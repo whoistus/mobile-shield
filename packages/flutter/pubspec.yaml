@@ -1,0 +1,21 @@
+name: mobile_shield
+description: In-house mobile security SDK wrapper for Flutter.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=3.27.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: io.mobileshield.flutter
+        pluginClass: MobileShieldPlugin
+      ios:
+        pluginClass: MobileShieldPlugin

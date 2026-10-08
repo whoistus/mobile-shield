@@ -1,0 +1,31 @@
+buildscript {
+    ext.kotlin_version = '1.9.24'
+    repositories { google(); mavenCentral() }
+    dependencies { classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" }
+}
+
+group 'io.mobileshield.flutter'
+version '0.1.0'
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    namespace 'io.mobileshield.flutter'
+    compileSdk 35
+
+    defaultConfig {
+        minSdk 21
+    }
+
+    kotlinOptions { jvmTarget = '1.8' }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation "io.mobileshield:core:0.1.0"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@whoistus/react-native-mobile-shield",
+  "version": "0.1.0",
+  "description": "In-house mobile security SDK wrapper for React Native",
+  "license": "UNLICENSED",
+  "private": false,
+  "files": [
+    "android",
+    "ios",
+    "MobileShield.podspec",
+    "src",
+    "THIRD_PARTY_NOTICES.md",
+    "LICENSE"
+  ],
+  "peerDependencies": {
+    "react": "*",
+    "react-native": ">=0.72.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whoistus/mobile-shield.git",
+    "directory": "packages/react-native"
+  }
+}

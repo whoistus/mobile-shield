@@ -1,0 +1,17 @@
+node_modules/
+Pods/
+build/
+.gradle/
+*.apk
+DerivedData/
+vendor/
+.bundle/
+local.properties
+.xcode.env.local
+*.xcworkspace/xcuserdata/
+xcuserdata/
+.cxx/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+flutter-app/ios/Podfile.lock

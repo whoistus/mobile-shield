@@ -1,0 +1,88 @@
+name: consumers
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  host:
+    name: ${{ matrix.host }} (${{ matrix.mode }})
+    runs-on: macos-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { host: rn-072, mode: android }
+          - { host: rn-072, mode: ios-default }
+          - { host: rn-072, mode: ios-static }
+          - { host: rn-086, mode: android }
+          - { host: rn-086, mode: ios }
+          - { host: flutter-app, mode: android }
+          - { host: flutter-app, mode: ios-cocoapods }
+          - { host: flutter-app, mode: ios-spm }
+          - { host: android-host, mode: android }
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install NDK r28
+        run: sdkmanager "ndk;28.2.13676358" "platforms;android-35" "build-tools;35.0.0"
+
+      - uses: actions/setup-java@v4
+        if: matrix.host == 'rn-072' && matrix.mode == 'android'
+        with:
+          distribution: temurin
+          java-version: "17"   # RN 0.72 / Gradle 8.0 cannot run on JDK 21
+
+      - uses: subosito/flutter-action@v2
+        if: startsWith(matrix.host, 'flutter') || matrix.host == 'android-host'
+        with:
+          flutter-version: "3.27.4"
+          channel: stable
+
+      - uses: actions/setup-node@v4
+        if: startsWith(matrix.host, 'rn-')
+        with:
+          node-version: "22"
+
+      - name: Build core and sync wrappers
+        run: |
+          ./scripts/build-aar.sh
+          ./scripts/build-xcframework.sh
+          ./scripts/sync-binaries.sh
+
+      - name: Build host and capture sdkVersion
+        env:
+          HOST: ${{ matrix.host }}
+          MODE: ${{ matrix.mode }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          dir="consumers/$HOST"
+          if [ ! -x "$dir/build.sh" ]; then
+            echo "placeholder: $dir/build.sh not implemented yet" >&2
+            exit 1
+          fi
+          expected="$(tr -d '[:space:]' < VERSION)"
+          "$dir/build.sh" "$MODE" 2>&1 | tee "$RUNNER_TEMP/$HOST-$MODE.log"
+          # iOS modes launch on a simulator and must log the runtime version.
+          # Android modes are build + 16KB gates only; on-device JNI proof is the
+          # android-16k-smoke job in build-core.yml (no emulator in this matrix).
+          case "$MODE" in
+            ios*) grep -F "sdkVersion=$expected" "$RUNNER_TEMP/$HOST-$MODE.log" ;;
+            *)    grep -E "16KB alignment: PASS" "$RUNNER_TEMP/$HOST-$MODE.log" ;;
+          esac

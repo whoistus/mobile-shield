@@ -1,0 +1,10 @@
+framework module MobileShieldCore {
+  umbrella header "MobileShieldCore.h"
+  export *
+
+  module * { export * }
+}
+
+module MobileShieldCore.Swift {
+  header "MobileShieldCore-Swift.h"
+}

@@ -1,0 +1,18 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "MobileShieldCore",
+    "printedName": "MobileShieldCore",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": []
+}

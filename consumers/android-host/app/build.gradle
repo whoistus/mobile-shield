@@ -1,0 +1,26 @@
+plugins {
+    id "com.android.application"
+}
+
+android {
+    namespace "io.mobileshield.consumer.host"
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "io.mobileshield.consumer.host"
+        minSdk 21
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation "io.mobileshield:core:0.1.0"
+    releaseImplementation "io.mobileshield.consumer.flutter_module:flutter_release:1.0"
+}
