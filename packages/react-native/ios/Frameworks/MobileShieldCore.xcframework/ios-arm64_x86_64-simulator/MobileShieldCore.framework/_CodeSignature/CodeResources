@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/MobileShield.h</key>
 		<data>
-		3fqbg99Mgm9k7XTf4RwLeZI5QP4=
+		cbmu/1Xnri8YYOAPeP9FWheg5xY=
 		</data>
 		<key>Headers/MobileShieldCore-Swift.h</key>
 		<data>
@@ -22,11 +22,11 @@
 		</data>
 		<key>Modules/MobileShieldCore.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		WBKZK/u+36cURejG+UzxuS8iwXM=
+		SoOUGh/TiIiUuxR+dYQod9e4Q1g=
 		</data>
 		<key>Modules/MobileShieldCore.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		rxn7J6k1P0uT4ngoqOS207UQCnc=
+		917sGzOyG7gE4Q9f5HG7j6qgNIo=
 		</data>
 		<key>Modules/MobileShieldCore.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -34,19 +34,19 @@
 		</data>
 		<key>Modules/MobileShieldCore.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		rxn7J6k1P0uT4ngoqOS207UQCnc=
+		917sGzOyG7gE4Q9f5HG7j6qgNIo=
 		</data>
 		<key>Modules/MobileShieldCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		2fnkFMlx9wJW1ZmUO+4e8vc6CqE=
+		b7GGy073ph8n4aA+EgGlh74e15s=
 		</data>
 		<key>Modules/MobileShieldCore.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		WBKZK/u+36cURejG+UzxuS8iwXM=
+		SoOUGh/TiIiUuxR+dYQod9e4Q1g=
 		</data>
 		<key>Modules/MobileShieldCore.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		nv6bb4WhNf8L8oebLn1jYub4Zmo=
+		qBiXg5R85DrKxDIZrqQVufUhOGE=
 		</data>
 		<key>Modules/MobileShieldCore.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -54,11 +54,11 @@
 		</data>
 		<key>Modules/MobileShieldCore.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		nv6bb4WhNf8L8oebLn1jYub4Zmo=
+		qBiXg5R85DrKxDIZrqQVufUhOGE=
 		</data>
 		<key>Modules/MobileShieldCore.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		yTBPWPtpk2MCNaMnTwuJTCD2v34=
+		Fvk7HwKgw8ENs4fIthNKOY5jVEM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>PrivacyInfo.xcprivacy</key>
 		<data>
-		qVtg9z+pFd24yPt0DMXaL1NaluI=
+		Y2Cuh3F4wjrpAvT96XVKwtakPEI=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -75,7 +75,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OQ4NX+E7/sScJO5vzGCWCZg/2zs/xjWdw8Gwc0ICEGQ=
+			iQNgs/lND4FSZIJ9va4RvLxnnefY1qnOP/lWL59xZM8=
 			</data>
 		</dict>
 		<key>Headers/MobileShieldCore-Swift.h</key>
@@ -96,14 +96,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			oLnpVKCYheVfMd0L4OTKiMVKaRKFItco7vH1q3huBro=
+			7YfTP+HoAgYt+mR5CyATyNEwe/v9yjRFCpFz94gm64s=
 			</data>
 		</dict>
 		<key>Modules/MobileShieldCore.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			u3q2H0RE/LoHhMsAH1jDheEomH3NDF+aZVtplrZyJn4=
+			9QM+38q2+ZmgdaKdW6pK6clI+qivGyLK6rRLQDr9khk=
 			</data>
 		</dict>
 		<key>Modules/MobileShieldCore.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -117,28 +117,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			u3q2H0RE/LoHhMsAH1jDheEomH3NDF+aZVtplrZyJn4=
+			9QM+38q2+ZmgdaKdW6pK6clI+qivGyLK6rRLQDr9khk=
 			</data>
 		</dict>
 		<key>Modules/MobileShieldCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			panfwHC83Rr9PQ10qRdwrttyUlI5VagWc2pzZEaaRtE=
+			RguDoMZsRU9uWMdFuQOW5qB7BQA+ETSvmtmYsYzyc+Y=
 			</data>
 		</dict>
 		<key>Modules/MobileShieldCore.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			oLnpVKCYheVfMd0L4OTKiMVKaRKFItco7vH1q3huBro=
+			7YfTP+HoAgYt+mR5CyATyNEwe/v9yjRFCpFz94gm64s=
 			</data>
 		</dict>
 		<key>Modules/MobileShieldCore.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Mqwvc/YkUHAmJE83N2G2hwW1xPhZPb1i/RHQVKWgSIg=
+			JbzvqTNhxFFD2xdsrih627hLVXDbNSKEjFYnzmrxDQo=
 			</data>
 		</dict>
 		<key>Modules/MobileShieldCore.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -152,14 +152,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Mqwvc/YkUHAmJE83N2G2hwW1xPhZPb1i/RHQVKWgSIg=
+			JbzvqTNhxFFD2xdsrih627hLVXDbNSKEjFYnzmrxDQo=
 			</data>
 		</dict>
 		<key>Modules/MobileShieldCore.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7us5icVVyb/1wejv8UMF15/92NmzVUKS3oZ7liBgnGM=
+			2xiF9lAvX7fB3+FoHRaym1ZILyqwed3tX1+/sDCoOPk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -173,7 +173,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			j1ZKC+QuG9HA+bK4nFpy29vqrbHihLzouFX6W7maGIE=
+			Gu1XxB5/J7VYByhj0e8bNQFovzLLFSv2pwbnwSaKMfE=
 			</data>
 		</dict>
 	</dict>

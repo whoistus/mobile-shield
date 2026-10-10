@@ -10,9 +10,906 @@
         "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "MachO",
+        "printedName": "MachO",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "CryptoKit",
+        "printedName": "CryptoKit",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "LocalAuthentication",
+        "printedName": "LocalAuthentication",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Darwin",
+        "printedName": "Darwin",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Security",
+        "printedName": "Security",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "CFNetwork",
+        "printedName": "CFNetwork",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "MachO",
+        "printedName": "MachO",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileShieldCore"
       }
     ],
     "json_format_version": 8
   },
-  "ConstValues": []
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/Action.swift",
+      "kind": "StringLiteral",
+      "offset": 52,
+      "length": 8,
+      "value": "\"REPORT\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/Action.swift",
+      "kind": "StringLiteral",
+      "offset": 77,
+      "length": 6,
+      "value": "\"WARN\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/Action.swift",
+      "kind": "StringLiteral",
+      "offset": 101,
+      "length": 7,
+      "value": "\"BLOCK\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/Action.swift",
+      "kind": "StringLiteral",
+      "offset": 125,
+      "length": 6,
+      "value": "\"KILL\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Bootstrap.swift",
+      "kind": "StringLiteral",
+      "offset": 156,
+      "length": 21,
+      "value": "\"MobileShieldChannel\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Bootstrap.swift",
+      "kind": "StringLiteral",
+      "offset": 208,
+      "length": 26,
+      "value": "\"MobileShieldConfigPubKey\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Bootstrap.swift",
+      "kind": "StringLiteral",
+      "offset": 262,
+      "length": 20,
+      "value": "\"MobileShieldTeamId\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Bootstrap.swift",
+      "kind": "StringLiteral",
+      "offset": 312,
+      "length": 22,
+      "value": "\"MobileShieldBundleId\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Bootstrap.swift",
+      "kind": "StringLiteral",
+      "offset": 368,
+      "length": 26,
+      "value": "\"MobileShieldDistribution\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/ConfigEngine.swift",
+      "kind": "StringLiteral",
+      "offset": 605,
+      "length": 14,
+      "value": "\"policy.floor\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/ConfigEngine.swift",
+      "kind": "StringLiteral",
+      "offset": 657,
+      "length": 21,
+      "value": "\"policy.badSignature\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/ConfigEngine.swift",
+      "kind": "FloatLiteral",
+      "offset": 718,
+      "length": 3,
+      "value": "0.5"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/ConfigEngine.swift",
+      "kind": "Array",
+      "offset": 5201,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/DebuggerDetector.swift",
+      "kind": "StringLiteral",
+      "offset": 68,
+      "length": 18,
+      "value": "\"debugger.ptraced\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Defaults.swift",
+      "kind": "FloatLiteral",
+      "offset": 149,
+      "length": 3,
+      "value": "0.7"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Defaults.swift",
+      "kind": "IntegerLiteral",
+      "offset": 198,
+      "length": 4,
+      "value": "5000"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Defaults.swift",
+      "kind": "IntegerLiteral",
+      "offset": 251,
+      "length": 4,
+      "value": "1000"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Defaults.swift",
+      "kind": "IntegerLiteral",
+      "offset": 305,
+      "length": 3,
+      "value": "500"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Defaults.swift",
+      "kind": "IntegerLiteral",
+      "offset": 311,
+      "length": 4,
+      "value": "3000"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Defaults.swift",
+      "kind": "Array",
+      "offset": 353,
+      "length": 263,
+      "value": "[\"com.android.vending\", \"com.huawei.appmarket\", \"com.xiaomi.market\", \"com.xiaomi.mipicks\", \"com.sec.android.app.samsungapps\", \"com.amazon.venezia\", \"com.heytap.market\", \"com.oppo.market\", \"com.bbk.appstore\", \"com.hihonor.appmarket\"]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Defaults.swift",
+      "kind": "Array",
+      "offset": 724,
+      "length": 42,
+      "value": "[\"tampering.bundleId\", \"tampering.teamId\"]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Config\/Defaults.swift",
+      "kind": "Array",
+      "offset": 938,
+      "length": 158,
+      "value": "[\"jailbreak.dyldImages\", \"jailbreak.dyldEnv\", \"hooking.fridaImages\", \"hooking.fridaPort\", \"hooking.prologue\", \"tampering.provisioning\"]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/DeviceLockDetector.swift",
+      "kind": "StringLiteral",
+      "offset": 97,
+      "length": 19,
+      "value": "\"devicelock.absent\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Core\/EventBus.swift",
+      "kind": "IntegerLiteral",
+      "offset": 252,
+      "length": 2,
+      "value": "64"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Core\/EventBus.swift",
+      "kind": "Dictionary",
+      "offset": 347,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Core\/EventBus.swift",
+      "kind": "Array",
+      "offset": 392,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/HookingDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 85,
+      "length": 21,
+      "value": "\"hooking.fridaImages\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/HookingDetectors.swift",
+      "kind": "Array",
+      "offset": 225,
+      "length": 28,
+      "value": "[\"frida\", \"gum-js\", \"gumjs\"]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/HookingDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 686,
+      "length": 19,
+      "value": "\"hooking.fridaPort\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/HookingDetectors.swift",
+      "kind": "IntegerLiteral",
+      "offset": 962,
+      "length": 5,
+      "value": "27042"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/HookingDetectors.swift",
+      "kind": "IntegerLiteral",
+      "offset": 989,
+      "length": 2,
+      "value": "60"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/HookingDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 3616,
+      "length": 18,
+      "value": "\"hooking.prologue\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/HookingDetectors.swift",
+      "kind": "Array",
+      "offset": 3769,
+      "length": 137,
+      "value": "[\"open\", \"read\", \"stat\", \"access\", \"fopen\", \"dlopen\", \"dlsym\", \"getenv\", \"sysctl\", \"ptrace\", \"_dyld_image_count\", \"_dyld_get_image_name\"]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/IntegrityDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 163,
+      "length": 20,
+      "value": "\"tampering.bundleId\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/IntegrityDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 1469,
+      "length": 18,
+      "value": "\"tampering.teamId\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/IntegrityDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 2832,
+      "length": 24,
+      "value": "\"tampering.provisioning\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 473,
+      "length": 17,
+      "value": "\"jailbreak.paths\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "Array",
+      "offset": 606,
+      "length": 676,
+      "value": "[\"\/Applications\/Cydia.app\", \"\/Applications\/Sileo.app\", \"\/Applications\/Zebra.app\", \"\/Applications\/Installer.app\", \"\/Applications\/blackra1n.app\", \"\/Applications\/FakeCarrier.app\", \"\/Applications\/Icy.app\", \"\/Applications\/IntelliScreen.app\", \"\/Applications\/SBSettings.app\", \"\/Applications\/WinterBoard.app\", \"\/Library\/MobileSubstrate\/MobileSubstrate.dylib\", \"\/Library\/MobileSubstrate\/DynamicLibraries\", \"\/bin\/bash\", \"\/usr\/sbin\/sshd\", \"\/usr\/bin\/sshd\", \"\/usr\/libexec\/sftp-server\", \"\/etc\/apt\", \"\/private\/var\/lib\/apt\", \"\/private\/var\/lib\/cydia\", \"\/private\/var\/stash\", \"\/var\/cache\/apt\", \"\/var\/lib\/dpkg\", \"\/usr\/libexec\/cydia\"]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 1827,
+      "length": 25,
+      "value": "\"jailbreak.rootlessPaths\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "Array",
+      "offset": 1968,
+      "length": 443,
+      "value": "[\"\/var\/jb\", \"\/var\/jb\/.installed_dopamine\", \"\/var\/jb\/.procursus_strapped\", \"\/var\/jb\/basebin\", \"\/var\/jb\/Applications\/Sileo.app\", \"\/var\/jb\/Applications\/Zebra.app\", \"\/var\/jb\/usr\/bin\/sshd\", \"\/var\/jb\/usr\/lib\/libsubstrate.dylib\", \"\/var\/jb\/usr\/lib\/libellekit.dylib\", \"\/var\/jb\/Library\/MobileSubstrate\/DynamicLibraries\", \"\/var\/jb\/etc\/apt\", \"\/var\/containers\/Bundle\/tweaksupport\", \"\/var\/binpack\", \"\/binpack\"]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 3043,
+      "length": 22,
+      "value": "\"jailbreak.urlSchemes\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 3191,
+      "length": 29,
+      "value": "\"LSApplicationQueriesSchemes\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "Array",
+      "offset": 3238,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3350,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "Array",
+      "offset": 3386,
+      "length": 48,
+      "value": "[\"cydia\", \"sileo\", \"zbra\", \"filza\", \"undecimus\"]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 4164,
+      "length": 24,
+      "value": "\"jailbreak.sandboxWrite\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 4681,
+      "length": 22,
+      "value": "\"jailbreak.dyldImages\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "Array",
+      "offset": 4819,
+      "length": 105,
+      "value": "[\"substrate\", \"substitute\", \"libhooker\", \"ellekit\", \"tweakinject\", \"\/var\/jb\", \"cycript\", \"sslkillswitch\"]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 5354,
+      "length": 19,
+      "value": "\"jailbreak.dyldEnv\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "StringLiteral",
+      "offset": 5453,
+      "length": 23,
+      "value": "\"DYLD_INSERT_LIBRARIES\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/JailbreakDetectors.swift",
+      "kind": "Array",
+      "offset": 5548,
+      "length": 138,
+      "value": "[\"libMainThreadChecker\", \"libBacktraceRecording\", \"libViewDebuggerSupport\", \"libLogRedirect\", \"\/Developer\/\", \"Xcode.app\", \"CoreSimulator\"]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Core\/Monitor.swift",
+      "kind": "StringLiteral",
+      "offset": 205,
+      "length": 25,
+      "value": "\"io.mobileshield.monitor\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Core\/Monitor.swift",
+      "kind": "BooleanLiteral",
+      "offset": 443,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/NetworkDetector.swift",
+      "kind": "StringLiteral",
+      "offset": 89,
+      "length": 15,
+      "value": "\"network.proxy\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/NetworkDetector.swift",
+      "kind": "Array",
+      "offset": 303,
+      "length": 69,
+      "value": "[\"HTTPEnable\", \"HTTPSEnable\", \"SOCKSEnable\", \"ProxyAutoConfigEnable\"]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Support\/Platform.swift",
+      "kind": "BooleanLiteral",
+      "offset": 154,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Support\/Platform.swift",
+      "kind": "StringLiteral",
+      "offset": 251,
+      "length": 50,
+      "value": "\"simulator shares the host filesystem and signing\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Support\/Platform.swift",
+      "kind": "BooleanLiteral",
+      "offset": 703,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Support\/Platform.swift",
+      "kind": "StringLiteral",
+      "offset": 750,
+      "length": 44,
+      "value": "\"iOS app on Mac shares the macOS filesystem\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Support\/ProvisioningProfile.swift",
+      "kind": "Array",
+      "offset": 387,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Support\/ProvisioningProfile.swift",
+      "kind": "BooleanLiteral",
+      "offset": 452,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Support\/ProvisioningProfile.swift",
+      "kind": "BooleanLiteral",
+      "offset": 489,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Support\/ProvisioningProfile.swift",
+      "kind": "BooleanLiteral",
+      "offset": 516,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/ScreenCaptureObserver.swift",
+      "kind": "StringLiteral",
+      "offset": 192,
+      "length": 17,
+      "value": "\"screen.captured\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/ScreenCaptureObserver.swift",
+      "kind": "Array",
+      "offset": 336,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/Severity.swift",
+      "kind": "StringLiteral",
+      "offset": 39,
+      "length": 5,
+      "value": "\"LOW\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/Severity.swift",
+      "kind": "StringLiteral",
+      "offset": 63,
+      "length": 8,
+      "value": "\"MEDIUM\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/Severity.swift",
+      "kind": "StringLiteral",
+      "offset": 88,
+      "length": 6,
+      "value": "\"HIGH\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/Severity.swift",
+      "kind": "StringLiteral",
+      "offset": 115,
+      "length": 10,
+      "value": "\"CRITICAL\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Core\/ShieldEngine.swift",
+      "kind": "BooleanLiteral",
+      "offset": 777,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Core\/ShieldEngine.swift",
+      "kind": "Dictionary",
+      "offset": 962,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Core\/ShieldEngine.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1400,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Core\/ShieldEngine.swift",
+      "kind": "Array",
+      "offset": 1496,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/ShieldError.swift",
+      "kind": "StringLiteral",
+      "offset": 516,
+      "length": 17,
+      "value": "\"io.mobileshield\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Detectors\/SimulatorDetector.swift",
+      "kind": "StringLiteral",
+      "offset": 69,
+      "length": 11,
+      "value": "\"simulator\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/ThreatCategory.swift",
+      "kind": "StringLiteral",
+      "offset": 60,
+      "length": 6,
+      "value": "\"ROOT\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/ThreatCategory.swift",
+      "kind": "StringLiteral",
+      "offset": 87,
+      "length": 10,
+      "value": "\"EMULATOR\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/ThreatCategory.swift",
+      "kind": "StringLiteral",
+      "offset": 118,
+      "length": 10,
+      "value": "\"DEBUGGER\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/ThreatCategory.swift",
+      "kind": "StringLiteral",
+      "offset": 148,
+      "length": 9,
+      "value": "\"HOOKING\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/ThreatCategory.swift",
+      "kind": "StringLiteral",
+      "offset": 179,
+      "length": 11,
+      "value": "\"TAMPERING\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/ThreatCategory.swift",
+      "kind": "StringLiteral",
+      "offset": 212,
+      "length": 11,
+      "value": "\"INSTALLER\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/ThreatCategory.swift",
+      "kind": "StringLiteral",
+      "offset": 249,
+      "length": 16,
+      "value": "\"SCREEN_CAPTURE\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/ThreatCategory.swift",
+      "kind": "StringLiteral",
+      "offset": 291,
+      "length": 17,
+      "value": "\"DEV_OPTIONS_ADB\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/ThreatCategory.swift",
+      "kind": "StringLiteral",
+      "offset": 333,
+      "length": 16,
+      "value": "\"NO_DEVICE_LOCK\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Model\/ThreatCategory.swift",
+      "kind": "StringLiteral",
+      "offset": 370,
+      "length": 11,
+      "value": "\"VPN_PROXY\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Policy\/Watchdog.swift",
+      "kind": "BooleanLiteral",
+      "offset": 418,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Policy\/Watchdog.swift",
+      "kind": "StringLiteral",
+      "offset": 508,
+      "length": 26,
+      "value": "\"io.mobileshield.watchdog\""
+    },
+    {
+      "filePath": "\/Users\/iamtu\/Documents\/WORKSPACE\/SOURCE\/ME\/mobile-shield\/core-ios\/Sources\/Policy\/Watchdog.swift",
+      "kind": "IntegerLiteral",
+      "offset": 688,
+      "length": 1,
+      "value": "0"
+    }
+  ]
 }
