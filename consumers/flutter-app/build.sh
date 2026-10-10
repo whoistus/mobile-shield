@@ -44,11 +44,15 @@ ios_run() {
   local pid=$!
   sleep 2
   xcrun simctl launch "$udid" "$APP_ID"
-  for _ in $(seq 1 30); do
+  # A freshly booted CI simulator can take well over 30 s to start a debug Flutter app.
+  for _ in $(seq 1 90); do
     grep -q "flutter: $EXPECT" "$log" && break
     sleep 1
   done
   kill "$pid" 2>/dev/null || true
+  # The live stream can attach late and miss the line; the persisted log still has it.
+  grep -q "$EXPECT" "$log" || xcrun simctl spawn "$udid" log show --last 5m --style compact \
+    --predicate 'eventMessage CONTAINS "sdkVersion="' >>"$log" 2>&1 || true
   xcrun simctl terminate "$udid" "$APP_ID" 2>/dev/null || true
   if grep -h 'sdkVersion=' "$log"; then
     grep -q "$EXPECT" "$log" && echo "PASS ios (spm=$spm)" && return 0

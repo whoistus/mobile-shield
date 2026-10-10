@@ -2,13 +2,15 @@ import XCTest
 @testable import MobileShieldCore
 
 final class WatchdogTests: XCTestCase {
+    // Kill delays are tens of ms; the generous timeout only absorbs CI simulator stalls
+    // (a stalled run can reach the deadline and the timer together and report a false miss).
     func testTerminatesAfterChosenDelay() {
         let fired = expectation(description: "terminate")
         let watchdog = Watchdog(random: { _ in 20 }, terminate: { fired.fulfill() })
         XCTAssertTrue(watchdog.schedule(delayMs: 10...50))
         XCTAssertTrue(watchdog.isScheduled)
         XCTAssertEqual(watchdog.scheduledDelayMs, 20)
-        wait(for: [fired], timeout: 2)
+        wait(for: [fired], timeout: 10)
     }
 
     func testDelayIsDrawnFromTheConfiguredRange() {
@@ -25,7 +27,7 @@ final class WatchdogTests: XCTestCase {
         let watchdog = Watchdog(random: { _ in 10 }, terminate: { fired.fulfill() })
         XCTAssertTrue(watchdog.schedule(delayMs: 0...10))
         XCTAssertFalse(watchdog.schedule(delayMs: 0...10))
-        wait(for: [fired], timeout: 2)
+        wait(for: [fired], timeout: 10)
         let settle = expectation(description: "settle")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { settle.fulfill() }
         wait(for: [settle], timeout: 2)
@@ -55,7 +57,8 @@ final class WatchdogTests: XCTestCase {
         harness.engine.startMonitoring()
         harness.engine.stopMonitoring()
         XCTAssertTrue(harness.watchdog.isScheduled)
-        wait(for: [fired], timeout: 2)
+        // The kill reaches `terminated` through a weak reference to the harness.
+        withExtendedLifetime(harness) { wait(for: [fired], timeout: 10) }
     }
 
     func testBlockNeverSchedulesWatchdog() {
