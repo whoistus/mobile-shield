@@ -1,118 +1,29 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {Button, ScrollView, Text, View, Platform} from 'react-native';
+import MobileShield, {ThreatEvent} from '@whoistus/react-native-mobile-shield';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+export default function App() {
+  const [status, setStatus] = React.useState('Starting security checks');
+  const [events, setEvents] = React.useState<ThreatEvent[]>([]);
+  const [blocked, setBlocked] = React.useState(false);
+  React.useEffect(() => {
+    const subscription = MobileShield.onThreat(event => {
+      setEvents(previous => [event, ...previous].slice(0, 25));
+      if (event.action === 'BLOCK' || event.action === 'KILL') setBlocked(true);
+    });
+    MobileShield.init({version: 1, appId: Platform.select({android: 'com.msrn072', default: 'org.reactjs.native.example.MsRn072'}), seq: 1})
+      .then(info => MobileShield.isBlocked().then(value => {
+        setBlocked(value);
+        setStatus(`${info.sdkVersion} · ${info.platform} · GMS ${info.gmsAvailable}`);
+        return MobileShield.startMonitoring();
+      }))
+      .catch(error => { setBlocked(true); setStatus(String(error)); });
+    return () => { subscription.remove(); MobileShield.stopMonitoring(); };
+  }, []);
+  return <ScrollView style={{padding: 24}}>
+    <Text>{status}</Text>
+    <Text>{blocked ? 'Protected operations blocked' : 'Ready'}</Text>
+    <Button title="Run checks" onPress={() => MobileShield.runChecks().then(setEvents)} />
+    {events.map((event, index) => <View key={`${event.detectorId}-${index}`}><Text>{event.detectorId}: {event.action} ({event.confidence})</Text></View>)}
+  </ScrollView>;
 }
-
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;

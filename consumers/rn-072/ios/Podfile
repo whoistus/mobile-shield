@@ -31,7 +31,6 @@ end
 
 target 'MsRn072' do
   config = use_native_modules!
-  pod 'MobileShield', :path => '../../../packages/react-native'
 
   # Flags change depending on the env values.
   flags = get_default_flags()

@@ -3,6 +3,7 @@
         android:label="flutter_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="io.mobileshield.CHANNEL" android:value="dev" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

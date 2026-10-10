@@ -29,6 +29,7 @@ allprojects {
                 username = findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
                 password = findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
             }
+            content { includeGroup("io.mobileshield") }
         }
     }
 }

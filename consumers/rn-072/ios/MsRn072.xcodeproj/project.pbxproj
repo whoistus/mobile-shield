@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* MsRn072Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MsRn072Tests.m */; };
+		083D7C3D3C435AA8E34EBD23 /* Pods_MsRn072.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B74371E020785260926064 /* Pods_MsRn072.framework */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		5197967E2965E63D73B0D1F3 /* Pods_MsRn072_MsRn072Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E87A82493DA4A7BB8551480 /* Pods_MsRn072_MsRn072Tests.framework */; };
 		6132EF182BDFF13200BBE14D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */; };
-		728518CCA204AADA10ABF194 /* Pods_MsRn072_MsRn072Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C62F5D8225D7F6213A07689 /* Pods_MsRn072_MsRn072Tests.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		F9F23DC6B249FB5396B678DD /* Pods_MsRn072.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E55972D0794E38E16AD0E4D /* Pods_MsRn072.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,13 +38,13 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MsRn072/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MsRn072/main.m; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-MsRn072.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MsRn072.debug.xcconfig"; path = "Target Support Files/Pods-MsRn072/Pods-MsRn072.debug.xcconfig"; sourceTree = "<group>"; };
+		3E87A82493DA4A7BB8551480 /* Pods_MsRn072_MsRn072Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MsRn072_MsRn072Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5709B34CF0A7D63546082F79 /* Pods-MsRn072.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MsRn072.release.xcconfig"; path = "Target Support Files/Pods-MsRn072/Pods-MsRn072.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-MsRn072-MsRn072Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MsRn072-MsRn072Tests.debug.xcconfig"; path = "Target Support Files/Pods-MsRn072-MsRn072Tests/Pods-MsRn072-MsRn072Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = MsRn072/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		6C62F5D8225D7F6213A07689 /* Pods_MsRn072_MsRn072Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MsRn072_MsRn072Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MsRn072/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-MsRn072-MsRn072Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MsRn072-MsRn072Tests.release.xcconfig"; path = "Target Support Files/Pods-MsRn072-MsRn072Tests/Pods-MsRn072-MsRn072Tests.release.xcconfig"; sourceTree = "<group>"; };
-		9E55972D0794E38E16AD0E4D /* Pods_MsRn072.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MsRn072.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5B74371E020785260926064 /* Pods_MsRn072.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MsRn072.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -53,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				728518CCA204AADA10ABF194 /* Pods_MsRn072_MsRn072Tests.framework in Frameworks */,
+				5197967E2965E63D73B0D1F3 /* Pods_MsRn072_MsRn072Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9F23DC6B249FB5396B678DD /* Pods_MsRn072.framework in Frameworks */,
+				083D7C3D3C435AA8E34EBD23 /* Pods_MsRn072.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,8 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				9E55972D0794E38E16AD0E4D /* Pods_MsRn072.framework */,
-				6C62F5D8225D7F6213A07689 /* Pods_MsRn072_MsRn072Tests.framework */,
+				D5B74371E020785260926064 /* Pods_MsRn072.framework */,
+				3E87A82493DA4A7BB8551480 /* Pods_MsRn072_MsRn072Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

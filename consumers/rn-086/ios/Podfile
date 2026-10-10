@@ -16,7 +16,6 @@ end
 
 target 'MsRn086' do
   config = use_native_modules!
-  pod 'MobileShield', :path => '../../../packages/react-native'
 
   use_react_native!(
     :path => config[:reactNativePath],
