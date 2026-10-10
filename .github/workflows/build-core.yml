@@ -91,6 +91,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
+      - name: Free runner disk space
+        # The ps16k AVD needs ~7.4 GB for userdata; a stock ubuntu-latest image leaves ~6.3 GB.
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup /usr/local/share/boost /opt/hostedtoolcache/CodeQL
+          df -h /home/runner
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
