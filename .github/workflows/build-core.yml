@@ -5,6 +5,7 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -28,6 +29,11 @@ jobs:
 
       - name: Forbidden strings
         run: ./scripts/check-forbidden-strings.sh
+
+      - name: Native host tests (googletest)
+        run: |
+          command -v ninja >/dev/null || brew install ninja
+          ./scripts/test-native-host.sh
 
       - name: Build AAR (unit tests + publishToMavenLocal)
         run: ./scripts/build-aar.sh

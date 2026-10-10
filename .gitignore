@@ -18,3 +18,4 @@ Pods/
 !packages/flutter/ios/mobile_shield/Frameworks/
 !packages/flutter/ios/mobile_shield/Frameworks/*.xcframework
 !packages/flutter/ios/mobile_shield/Frameworks/*.xcframework/**
+plans/*

@@ -9,7 +9,9 @@ NAMES='tm[d]s\|micro[p]ay\|thai[m]icro'
 
 files() { git ls-files -co --exclude-standard -z; }
 
-names=$(files | grep -zv -e '^THIRD_PARTY_NOTICES.md$' -e '/THIRD_PARTY_NOTICES.md$' \
+# plans/ is planning history (scout reports name the origin app being migrated); it is never
+# packaged, so it is exempt from the name scan only. Shipped sources and binaries stay covered.
+names=$(files | grep -zv -e '^THIRD_PARTY_NOTICES.md$' -e '/THIRD_PARTY_NOTICES.md$' -e '^plans/' \
   | xargs -0 grep -Iil "$NAMES" 2>/dev/null || true)
 # Binaries too (vendored xcframeworks, AARs): -a treats them as text.
 bins=$(files | grep -z -e '\.xcframework/' -e '\.aar$' -e '\.so$' \

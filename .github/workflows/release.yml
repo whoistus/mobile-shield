@@ -1,0 +1,245 @@
+name: release
+
+# Push a tag vX.Y.Z or vX.Y.Z-rc.N. To resume a partly failed release, run this workflow
+# from the Actions tab with the TAG selected as the ref ("Use workflow from") and repeat it in
+# `tag`. Every publish step first checks whether its artifact already exists and skips if so.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag being released (must equal the ref the workflow was started from)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  TAG: ${{ github.ref_name }}
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+      prerelease: ${{ steps.v.outputs.prerelease }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ref must be a tag matching the dispatch input
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          [ "${{ github.ref_type }}" = "tag" ] || { echo "start this workflow from a tag ref, not a branch" >&2; exit 1; }
+          if [ -n "$INPUT_TAG" ] && [ "$INPUT_TAG" != "$TAG" ]; then
+            echo "input tag $INPUT_TAG != ref $TAG" >&2; exit 1
+          fi
+
+      - name: VERSION, wrappers, podspecs, Package.swift and tag agree
+        id: v
+        run: |
+          set -euo pipefail
+          ./scripts/check-versions.sh "$TAG"
+          version="$(tr -d '[:space:]' < VERSION)"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          case "$version" in *-*) echo "prerelease=true" >> "$GITHUB_OUTPUT" ;; *) echo "prerelease=false" >> "$GITHUB_OUTPUT" ;; esac
+
+      - name: npm scope must equal the repository owner
+        run: |
+          set -euo pipefail
+          scope="$(node -p "require('./packages/react-native/package.json').name.split('/')[0]")"
+          owner="@$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')"
+          [ "$scope" = "$owner" ] || { echo "package scope $scope != repository owner $owner (GitHub Packages requires them equal)" >&2; exit 1; }
+
+  core:
+    needs: version
+    permissions:
+      contents: read
+    uses: ./.github/workflows/build-core.yml
+
+  consumers:
+    needs: version
+    permissions:
+      contents: read
+      packages: read
+    uses: ./.github/workflows/consumers.yml
+
+  # Builds the AAR once, publishes exactly those bytes and keeps them for the GitHub Release.
+  # When the version is already on Maven the published AAR is downloaded instead of rebuilt.
+  maven:
+    needs: [version, core, consumers]
+    runs-on: macos-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      packages: write
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Already on Maven?
+        id: exists
+        run: |
+          base="https://maven.pkg.github.com/${{ github.repository }}/io/mobileshield/core/$VERSION"
+          code="$(curl -sL -o /dev/null -w '%{http_code}' -u "$GITHUB_ACTOR:$GITHUB_TOKEN" "$base/core-$VERSION.pom")"
+          echo "pom http status: $code"
+          case "$code" in
+            200) echo "published=true" >> "$GITHUB_OUTPUT" ;;
+            404) echo "published=false" >> "$GITHUB_OUTPUT" ;;
+            *) echo "unexpected status $code from GitHub Packages" >&2; exit 1 ;;
+          esac
+
+      - uses: actions/setup-java@v4
+        if: steps.exists.outputs.published == 'false'
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: android-actions/setup-android@v3
+        if: steps.exists.outputs.published == 'false'
+
+      - name: Install NDK r28
+        if: steps.exists.outputs.published == 'false'
+        run: sdkmanager "ndk;28.2.13676358" "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Build AAR, 16KB gate, publish to GitHub Packages Maven
+        if: steps.exists.outputs.published == 'false'
+        run: |
+          set -euo pipefail
+          ./scripts/build-aar.sh
+          ./scripts/check-16kb.sh core-android/core/build/outputs/aar/core-release.aar
+          (cd core-android && ./gradlew --no-daemon -Pgpr.owner="${{ github.repository_owner }}" \
+            :core:publishReleasePublicationToGitHubPackagesRepository)
+          mkdir -p dist symbols
+          cp "core-android/build/outputs/core-$VERSION.aar" "dist/core-$VERSION.aar"
+          find core-android/core/build/intermediates/cxx -path '*obj/*' -name libmobileshield.so | while read -r so; do
+            abi="$(basename "$(dirname "$so")")"
+            mkdir -p "symbols/$abi"
+            cp "$so" "symbols/$abi/"
+          done
+          [ -n "$(ls -A symbols)" ] || { echo "no unstripped libmobileshield.so found" >&2; exit 1; }
+          tar -czf "dist/mobileshield-symbols-$VERSION.tar.gz" symbols
+
+      - name: Fetch the already published AAR
+        if: steps.exists.outputs.published == 'true'
+        run: |
+          mkdir -p dist
+          curl -sfL -u "$GITHUB_ACTOR:$GITHUB_TOKEN" -o "dist/core-$VERSION.aar" \
+            "https://maven.pkg.github.com/${{ github.repository }}/io/mobileshield/core/$VERSION/core-$VERSION.aar"
+          echo "::notice::core $VERSION was already published; symbols archive is only produced by the run that publishes"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-android
+          path: dist/*
+          if-no-files-found: error
+
+  npm:
+    needs: [version, core, maven]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      packages: write
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+      PRERELEASE: ${{ needs.version.outputs.prerelease }}
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: https://npm.pkg.github.com
+          scope: "@${{ github.repository_owner }}"
+
+      - name: Already on npm?
+        id: exists
+        working-directory: packages/react-native
+        run: |
+          name="$(node -p "require('./package.json').name")"
+          found="$(npm view "$name@$VERSION" version 2>/dev/null || true)"
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+          if [ "$found" = "$VERSION" ]; then echo "published=true" >> "$GITHUB_OUTPUT"; else echo "published=false" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: actions/download-artifact@v4
+        if: steps.exists.outputs.published == 'false'
+        with:
+          name: xcframework
+          path: core-ios/build/MobileShieldCore.xcframework
+
+      - name: Sync XCFramework into the wrappers (re-checks versions)
+        if: steps.exists.outputs.published == 'false'
+        run: ./scripts/sync-binaries.sh
+
+      - name: Publish (prerelease versions go to the next dist-tag)
+        if: steps.exists.outputs.published == 'false'
+        working-directory: packages/react-native
+        run: |
+          set -euo pipefail
+          if [ "$PRERELEASE" = "true" ]; then npm publish --tag next; else npm publish; fi
+
+      - name: Skip note
+        if: steps.exists.outputs.published == 'true'
+        run: echo "::notice::${{ steps.exists.outputs.name }}@$VERSION already published, skipped"
+
+  release:
+    needs: [version, core, maven, npm]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+      PRERELEASE: ${{ needs.version.outputs.prerelease }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-android
+          path: dist
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: xcframework
+          path: xcframework/MobileShieldCore.xcframework
+
+      - name: Assemble assets and checksums
+        run: |
+          set -euo pipefail
+          (cd xcframework && zip -qry "../dist/MobileShieldCore.xcframework.zip" MobileShieldCore.xcframework)
+          cd dist
+          rm -f SHA256SUMS
+          sha256sum ./* | sed 's#  \./#  #' > ../SHA256SUMS
+          mv ../SHA256SUMS SHA256SUMS
+          cat SHA256SUMS
+
+      - name: Create the release or add missing assets (never overwrites published bytes)
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            flags=(--verify-tag --generate-notes --title "$TAG")
+            [ "$PRERELEASE" = "true" ] && flags+=(--prerelease)
+            gh release create "$TAG" "${flags[@]}"
+          fi
+          existing="$(gh release view "$TAG" --json assets -q '.assets[].name')"
+          for f in dist/*; do
+            name="$(basename "$f")"
+            if grep -qxF "$name" <<< "$existing"; then
+              echo "asset $name already attached, skipped"
+            else
+              gh release upload "$TAG" "$f"
+            fi
+          done

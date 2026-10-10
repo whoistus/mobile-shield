@@ -59,4 +59,5 @@ if [ "$H_RN" != "$H_FL" ] || [ "$H_RN" != "$H_SRC" ]; then
   echo "ERROR: xcframework hash mismatch (src=$H_SRC rn=$H_RN flutter=$H_FL)" >&2
   exit 1
 fi
+"$ROOT/scripts/check-versions.sh"
 echo "sync-binaries: version=$VERSION xcframework sha256=$H_RN (identical in both wrappers)"
