@@ -107,6 +107,9 @@ jobs:
 
       - uses: android-actions/setup-android@v3
         if: steps.exists.outputs.published == 'false'
+        with:
+          # The default 'tools' package was removed from current sdkmanager repos.
+          packages: platform-tools
 
       - name: Install NDK r28
         if: steps.exists.outputs.published == 'false'
