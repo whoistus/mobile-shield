@@ -9,7 +9,7 @@ Release commitments. Anything not listed is best effort.
 | React Native | 0.72 (old architecture); 0.86 (New Architecture only, classic NativeModule through the interop layer) |
 | Flutter | 3.27+ (Dart SDK >= 3.6.0), CocoaPods and SwiftPM hosts, add-to-app |
 | Gradle / AGP | AGP 8.5.1+ with a Gradle version supported by that AGP; Gradle centralized repositories (`FAIL_ON_PROJECT_REPOS`) supported |
-| Android | minSdk 21, compileSdk 35, ABIs arm64-v8a, armeabi-v7a, x86, x86_64, NDK r28, all ELF LOAD segments 16KB aligned |
+| Android | minSdk 21, compileSdk 35, ABIs arm64-v8a, armeabi-v7a, x86, x86_64, NDK r28, 64-bit ELF LOAD segments 16KB aligned (`libmobileshield` is 16KB aligned on all 4 ABIs; RootBeer's 32-bit `libtoolChecker.so` is 4KB, which 16KB devices never load) |
 | iOS | 13.0+, Xcode 26.6, XCFramework slices ios-arm64 and ios-arm64_x86_64-simulator |
 
 Interop-layer removal in React Native is the trigger for a TurboModule rewrite.

@@ -26,7 +26,7 @@ Phases 2-5 are implemented in code and compile-verified. Nothing is released, no
 | Platform | Command | What it proves |
 |---|---|---|
 | Android core | `./scripts/build-aar.sh` (unit tests, `assembleRelease`, Maven Local) | AAR with 4 ABIs: arm64-v8a, armeabi-v7a, x86, x86_64 |
-| | `./scripts/check-16kb.sh core-android/core/build/outputs/aar/core-release.aar` | every ELF LOAD segment aligned to >= 0x4000 |
+| | `./scripts/check-16kb.sh core-android/core/build/outputs/aar/core-release.aar` | every 64-bit (arm64-v8a, x86_64) ELF LOAD segment aligned to >= 0x4000; 32-bit libs listed as INFO |
 | | exported-symbol inspection of `libmobileshield.so` | only `JNI_OnLoad` exported (reported by the phase 2 run; no script in the repo enforces it) |
 | iOS core | `xcodebuild build-for-testing` on `MobileShieldCore` (simulator) | core and test targets compile |
 | | `./scripts/build-xcframework.sh`, then `./scripts/sync-binaries.sh` | device and simulator slices; identical copy in both wrappers |
@@ -59,3 +59,11 @@ Unit tests exist for config (merge, floor, signature, shared vectors in `scripts
 - React Native jest: 19/19 passed. Flutter `flutter test`: 18/18 passed.
 - Android instrumented tests on the `Medium_Phone_API_37.0` emulator (arm64, API 37): 16/16 passed; `runChecks` averaged 249 ms (worst 502 ms).
 - Not run: example and consumer app launches, Flutter integration test, RN 0.86 iOS, 16KB emulator image, and the physical device matrix.
+
+## CI on main (2026-10-10)
+
+First pushes to `main` failed every job before any build ran. Fixes:
+
+- `android-actions/setup-android@v3` installs `tools platform-tools` by default; the legacy `tools` package is gone from the SDK repository. All workflows now pass `packages: platform-tools` (commit 5db3ffa). After this `build-core` / `build` passed: forbidden strings, native host tests, AAR + unit tests, 16KB AAR gate, iOS unit tests, XCFramework, sync.
+- `android-16k-smoke`: the emulator exited with `FATAL | Not enough space to create userdata partition` (needs 7.37 GB, runner had 6.31 GB). The job now frees runner disk first.
+- `consumers / android-host`: `check-16kb.sh` failed on RootBeer 0.1.1's `armeabi-v7a` and `x86` `libtoolChecker.so` (0x1000). 16KB page-size devices only run 64-bit code, so the script now gates arm64-v8a and x86_64 and lists 32-bit libs as `INFO-*`. RootBeer's 64-bit libs are 0x4000. Verified locally against synthetic APKs (32-bit 4KB lib: PASS; 64-bit 4KB lib: FAIL; `--only` still scopes the gate).
