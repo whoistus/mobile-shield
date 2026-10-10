@@ -1,0 +1,33 @@
+allprojects {
+    repositories {
+        // Local development: ./scripts/build-aar.sh publishes io.mobileshield:core here. Remove before release builds.
+        mavenLocal()
+        google()
+        mavenCentral()
+        // Registry path from docs/consumer-setup.md (needs gpr.user / gpr.token or GITHUB_ACTOR / GITHUB_TOKEN).
+        def gprUser = rootProject.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+        def gprToken = rootProject.findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
+        if (gprUser && gprToken) {
+            maven {
+                url = uri("https://maven.pkg.github.com/whoistus/mobile-shield")
+                credentials {
+                    username = gprUser
+                    password = gprToken
+                }
+                content { includeGroup("io.mobileshield") }
+            }
+        }
+    }
+}
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

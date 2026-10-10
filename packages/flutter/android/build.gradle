@@ -27,5 +27,6 @@ android {
 }
 
 dependencies {
+    // Resolved from the repository the host declares (GitHub Packages Maven, or mavenLocal in dev); see docs/consumer-setup.md.
     implementation "io.mobileshield:core:0.1.0"
 }

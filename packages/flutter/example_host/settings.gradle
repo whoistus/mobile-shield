@@ -1,0 +1,33 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+// Output of `flutter build aar` in ../example_module.
+def moduleRepo = new File(settingsDir, "../example_module/build/host/outputs/repo").canonicalFile
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        // Local development only: remove to exercise the real registry path.
+        mavenLocal()
+        google()
+        mavenCentral()
+        maven { url = uri(moduleRepo) }
+        maven { url = uri("https://storage.googleapis.com/download.flutter.io") }
+        maven {
+            url = uri("https://maven.pkg.github.com/whoistus/mobile-shield")
+            credentials {
+                username = settings.providers.gradleProperty("gpr.user").orNull ?: System.getenv("GITHUB_ACTOR")
+                password = settings.providers.gradleProperty("gpr.token").orNull ?: System.getenv("GITHUB_TOKEN")
+            }
+            content { includeGroup("io.mobileshield") }
+        }
+    }
+}
+
+rootProject.name = "example-host"
+include ":app"

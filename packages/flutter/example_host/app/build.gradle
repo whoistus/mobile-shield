@@ -1,0 +1,27 @@
+plugins {
+    id "com.android.application"
+}
+
+android {
+    namespace "io.mobileshield.example.host"
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "io.mobileshield.example.host"
+        minSdk 21
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    // The AAR declares core as a POM dependency; declaring it here keeps the host's resolution explicit.
+    implementation "io.mobileshield:core:0.1.0"
+    releaseImplementation "io.mobileshield.example.mobile_shield_example_module:flutter_release:1.0"
+}

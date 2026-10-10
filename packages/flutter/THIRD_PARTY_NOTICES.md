@@ -1,9 +1,21 @@
 # Third-party notices
 
-mobile-shield redistributes the components below. Their license texts must ship
-with every package (AAR, XCFramework, npm, pub).
+mobile-shield includes or depends on the components below. This file ships in every
+package (AAR, XCFramework, npm, Flutter plugin). Sections are grouped by how the
+component reaches a consumer.
 
-## RootBeer
+| Component | License | Reaches the consumer as |
+|---|---|---|
+| musl libc syscall headers | MIT | source compiled into `libmobileshield.so` |
+| Obfuscate (Adam Yaxley) | Unlicense | source compiled into `libmobileshield.so` |
+| LLVM libc++ (NDK `c++_static`) | Apache-2.0 with LLVM exceptions | statically linked into `libmobileshield.so` |
+| RootBeer | Apache-2.0 | Maven dependency of the core AAR (resolved by the consumer's build) |
+| Tink for Android | Apache-2.0 | Maven dependency of the core AAR (resolved by the consumer's build) |
+
+Test-only dependencies (JUnit, org.json, AndroidX test) are not redistributed.
+No code or binaries from IOSSecuritySuite, freeRASP or any GPL project are included.
+
+## RootBeer (Maven dependency)
 
 - Source: https://github.com/scottyab/RootBeer
 - Copyright 2015, Scott Alexander-Bown, Mat Rollings
@@ -260,4 +272,34 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <https://unlicense.org>
+```
+
+## Tink for Android (Maven dependency)
+
+- Source: https://github.com/tink-crypto/tink-java (artifact `com.google.crypto.tink:tink-android`)
+- Copyright Google LLC
+- License: Apache License 2.0 (full text above, under RootBeer)
+
+## LLVM libc++ (statically linked)
+
+- Source: https://libcxx.llvm.org/ (supplied by the Android NDK as `c++_static`)
+- Copyright (c) the LLVM project contributors (see the LLVM `CREDITS.TXT`)
+- License: Apache License 2.0 with LLVM Exceptions (Apache 2.0 text above, plus the exceptions below)
+
+```
+---- LLVM Exceptions to the Apache 2.0 License ----
+
+As an exception, if, as a result of your compiling your source code, portions
+of this Software are embedded into an Object form of such source code, you
+may redistribute such embedded portions in such Object form without complying
+with the conditions of Sections 4(a), 4(b) and 4(d) of the License.
+
+In addition, if you combine or link compiled forms of this Software with
+software that is licensed under the GPLv2 ("Combined Software") and if a
+court of competent jurisdiction determines that the patent provision (Section
+3), the indemnity provision (Section 9) or other Section of the License
+conflicts with the conditions of the GPLv2, you may retroactively and
+prospectively choose to deem waived or otherwise exclude such Section(s) of
+the License, but only in their entirety and only with respect to the Combined
+Software.
 ```
