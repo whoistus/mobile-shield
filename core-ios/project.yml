@@ -13,6 +13,7 @@ targets:
     platform: iOS
     sources:
       - path: Sources
+        headerVisibility: project
         excludes:
           - Public/**
           - PrivacyInfo.xcprivacy
@@ -23,6 +24,10 @@ targets:
       - path: Sources/PrivacyInfo.xcprivacy
         buildPhase: resources
     settings:
+      configs:
+        Debug:
+          BUILD_LIBRARY_FOR_DISTRIBUTION: NO
+          ENABLE_TESTABILITY: YES
       base:
         PRODUCT_NAME: MobileShieldCore
         PRODUCT_MODULE_NAME: MobileShieldCore

@@ -7,14 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1EDD7994C681C0ECA973D1E6 /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6498045F4D766B2306483BD /* Internal.swift */; };
+		055ECCEAD448563D2581FBAA /* DetectorSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1F4F4B2EB000D04585D82 /* DetectorSmokeTests.swift */; };
+		1F04F99E47201D5901540656 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AC84579E9169A18703CE5 /* JSONValue.swift */; };
+		1F1C9483B2B1164F80D7F213 /* SimulatorDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE4555E442F2DFC675C0B6D /* SimulatorDetector.swift */; };
+		24655B58557014E6475D7370 /* IntegrityDetectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36714AAC9E54CDD5C2C33F /* IntegrityDetectors.swift */; };
 		24FB8BC99B4EE6CA69F2E48B /* MobileShieldCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C22B6D734B647F409839E43 /* MobileShieldCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		25D494BE32A8A0BEB2D42179 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6041E2AD1125B372BE1849A9 /* Action.swift */; };
+		2ADF8C62119E40B2D98332B2 /* SecurityConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB06A12638AED44009B5573C /* SecurityConfig.swift */; };
+		33B3DA8DDFBFB9BFF16946A7 /* Detector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8771A99428B3DAF6E6289D /* Detector.swift */; };
+		3908AF1ED8C99797406773B5 /* PolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA71AB98204ACD27DE9812F5 /* PolicyTests.swift */; };
+		47412A9F62D0B31A9CDCBC66 /* AttestationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 19D50ED03B9DCF76996AA6D9 /* AttestationProvider.h */; };
+		485918A7E14E53EC77A1D8AC /* Bootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7728C765FA3E79270CC76F31 /* Bootstrap.swift */; };
+		48E014E45BA986B113FFD5E3 /* ThreatCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687692D315247F7E1E2ADFA1 /* ThreatCategory.swift */; };
+		4926297C00B2F1353C5BD49B /* ScreenCaptureObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1530CD0E0A3A2B1DA6F123 /* ScreenCaptureObserver.swift */; };
 		4C3845794D24E25309B2391C /* MobileShieldCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B5F28569825CB8A7B6E92 /* MobileShieldCoreTests.swift */; };
+		5448EAAFADE6858CE8397891 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACFF42612D1FDF0BCB07890 /* Monitor.swift */; };
+		58ECDC830761CF40DD3A5094 /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F6EB0566C145BC6540005B /* TestSupport.swift */; };
+		5A7960C89FC2EAD3ED7DBCA0 /* KeychainTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403EB40DCB815C8DFC482DC7 /* KeychainTeam.swift */; };
+		5B0150CB1A2D98855E4886D4 /* ShieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067D89739A8237064F78D220 /* ShieldError.swift */; };
+		5BEEE8090604FDF72F7863F4 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A050780FFD30CA4108533 /* Defaults.swift */; };
+		5C764AFF1B66E9B8D6F51E74 /* Severity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B2E7F729C5963165C2F0C7 /* Severity.swift */; };
+		62BE1A3FB7424C5EC5EDE5DF /* CodeSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC664C3C719F4D59C28ED66B /* CodeSignature.swift */; };
+		63587DC8CC52D2186C22AD44 /* ConfigMergeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9066713E0BCC19A531456D /* ConfigMergeTests.swift */; };
 		6F4EB47CF1338B342A38EE95 /* MobileShieldCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4E986D96E5BFF7ACBFBA28 /* MobileShieldCore.framework */; };
+		75AC62C1B19023991E0B69DE /* NetworkDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F359A7E04765F913964D621 /* NetworkDetector.swift */; };
+		7D2B21F87607AFD6D06B1158 /* ConfigVectorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04002DB39CF1BF5ED791F7AB /* ConfigVectorsTests.swift */; };
+		7DB9BEBA4A162A1A7FB65603 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112E77C1579A33EF70BDB270 /* Platform.swift */; };
+		7FE14293EC5114ACACC04BD3 /* EngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BC202A01AA156F0A320D6B /* EngineTests.swift */; };
+		8431A127C388876C1E964C5F /* ConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A506137C8E1AE28052B4DD /* ConfigStore.swift */; };
+		9699313343300446BA34D286 /* ProvisioningProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618805BAE856521D7504FE67 /* ProvisioningProfile.swift */; };
+		9895D13DA55E93F25B89D71B /* DetectorRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9013419BA3AF426FE1E5103 /* DetectorRegistry.swift */; };
+		9BDA3BB84A52C169F492A3B4 /* ShieldEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13811FE1A8EB024BB62F01A4 /* ShieldEngine.swift */; };
+		A4EEC7B2C3722D26B9850715 /* AttestationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260D64B0BC7D807FFFA5DD /* AttestationTests.swift */; };
+		A6E1775891C90CAEBF20DF30 /* ConfigFloorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B044FD55C108B662E4FED7 /* ConfigFloorTests.swift */; };
 		A8DAE7E53EE706615E0A4B3D /* MobileShield.m in Sources */ = {isa = PBXBuildFile; fileRef = 923A8FFE13338D65CB64DF9D /* MobileShield.m */; };
 		B8E77B43B629EDC50FC86ABD /* MobileShieldCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4E986D96E5BFF7ACBFBA28 /* MobileShieldCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B900A6C107D475D944C9977A /* DebuggerDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7331D473A762B26E45B39D0 /* DebuggerDetector.swift */; };
+		BB2B476CA54A32F62CE2DD78 /* ConfigSignatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D45DE15CF9BAB51BABF1027 /* ConfigSignatureTests.swift */; };
+		BB97C3BF2A6DBCD235A53405 /* MSInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE8E727923A0CAF72256FF0 /* MSInternal.swift */; };
+		CA4FBB579F88A8668B0F3735 /* HookingDetectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184CAA0B81B5FE89EB7B0B9F /* HookingDetectors.swift */; };
+		CA90E3488EE68A3AD2089B66 /* WatchdogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5643F1C5D1070C1656AB19 /* WatchdogTests.swift */; };
+		D4AD678A2044CFFEF5DB0584 /* EnvironmentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B4196F7A15E184C77D41E0 /* EnvironmentInfo.swift */; };
+		D52BFD2A066B9E6110AB528D /* DeviceLockDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9019EF6E9B2571C9D8802894 /* DeviceLockDetector.swift */; };
+		D57C973FFC192EE99463C252 /* Watchdog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC92D4BB39CAAEA7F043E329 /* Watchdog.swift */; };
+		DB10571679761B336AD1519B /* CanonicalJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A78D62C1F1210CCEF0112D6 /* CanonicalJSON.swift */; };
+		DD21DC9F2FBA6D9743E97481 /* Policy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9927C61288481A15FB6853D /* Policy.swift */; };
+		E16F5F1518B977142B7503C7 /* ConfigEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451D1D0D2AB6844F855C4FE7 /* ConfigEngine.swift */; };
 		E60707AA941CF546D2ECE1F3 /* MobileShield.h in Headers */ = {isa = PBXBuildFile; fileRef = B07EA23955FCFFE51F84FB10 /* MobileShield.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E643DB0E2296D0D60D5A5CF9 /* JailbreakDetectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E272226CF025D374BD6DCC9A /* JailbreakDetectors.swift */; };
 		ECDA3F93A6E00F58F5C218B2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 38DD1A2C58EC1B28A03A453C /* PrivacyInfo.xcprivacy */; };
+		EEEC0CEF7E39735C46044FF0 /* MonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305C6BA435A959762BC03E62 /* MonitorTests.swift */; };
+		F1A2B1833917B0C2E10E8D54 /* EventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F49EF8BAAB3998884E8339D /* EventBus.swift */; };
+		FA0B334FA55036E480750281 /* ConfigVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD6576ADA850CC14FE6204F /* ConfigVerifier.swift */; };
+		FBAD606A4DB848E82E5CBA3C /* ThreatEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D281F12ADE5B75016535ED3 /* ThreatEvent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,14 +87,59 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04002DB39CF1BF5ED791F7AB /* ConfigVectorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigVectorsTests.swift; sourceTree = "<group>"; };
+		067D89739A8237064F78D220 /* ShieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldError.swift; sourceTree = "<group>"; };
+		06B2E7F729C5963165C2F0C7 /* Severity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Severity.swift; sourceTree = "<group>"; };
+		112A050780FFD30CA4108533 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		112E77C1579A33EF70BDB270 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		13811FE1A8EB024BB62F01A4 /* ShieldEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldEngine.swift; sourceTree = "<group>"; };
 		179FC0AD516F1F763C66291D /* MobileShieldCoreTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MobileShieldCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		184CAA0B81B5FE89EB7B0B9F /* HookingDetectors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HookingDetectors.swift; sourceTree = "<group>"; };
+		19D50ED03B9DCF76996AA6D9 /* AttestationProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttestationProvider.h; sourceTree = "<group>"; };
 		1A4E986D96E5BFF7ACBFBA28 /* MobileShieldCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobileShieldCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CE4555E442F2DFC675C0B6D /* SimulatorDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorDetector.swift; sourceTree = "<group>"; };
+		1F359A7E04765F913964D621 /* NetworkDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDetector.swift; sourceTree = "<group>"; };
+		305C6BA435A959762BC03E62 /* MonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorTests.swift; sourceTree = "<group>"; };
 		38DD1A2C58EC1B28A03A453C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		3A36714AAC9E54CDD5C2C33F /* IntegrityDetectors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrityDetectors.swift; sourceTree = "<group>"; };
+		403EB40DCB815C8DFC482DC7 /* KeychainTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTeam.swift; sourceTree = "<group>"; };
+		43F6EB0566C145BC6540005B /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
+		451D1D0D2AB6844F855C4FE7 /* ConfigEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigEngine.swift; sourceTree = "<group>"; };
+		4D281F12ADE5B75016535ED3 /* ThreatEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreatEvent.swift; sourceTree = "<group>"; };
+		4E8771A99428B3DAF6E6289D /* Detector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detector.swift; sourceTree = "<group>"; };
+		5A78D62C1F1210CCEF0112D6 /* CanonicalJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanonicalJSON.swift; sourceTree = "<group>"; };
+		5D45DE15CF9BAB51BABF1027 /* ConfigSignatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSignatureTests.swift; sourceTree = "<group>"; };
+		5F5643F1C5D1070C1656AB19 /* WatchdogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchdogTests.swift; sourceTree = "<group>"; };
+		6041E2AD1125B372BE1849A9 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		618805BAE856521D7504FE67 /* ProvisioningProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisioningProfile.swift; sourceTree = "<group>"; };
+		687692D315247F7E1E2ADFA1 /* ThreatCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreatCategory.swift; sourceTree = "<group>"; };
 		6C22B6D734B647F409839E43 /* MobileShieldCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileShieldCore.h; sourceTree = "<group>"; };
+		6D9066713E0BCC19A531456D /* ConfigMergeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigMergeTests.swift; sourceTree = "<group>"; };
+		7728C765FA3E79270CC76F31 /* Bootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap.swift; sourceTree = "<group>"; };
+		79BC202A01AA156F0A320D6B /* EngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTests.swift; sourceTree = "<group>"; };
+		7F49EF8BAAB3998884E8339D /* EventBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBus.swift; sourceTree = "<group>"; };
+		82A506137C8E1AE28052B4DD /* ConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStore.swift; sourceTree = "<group>"; };
+		9019EF6E9B2571C9D8802894 /* DeviceLockDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLockDetector.swift; sourceTree = "<group>"; };
 		923A8FFE13338D65CB64DF9D /* MobileShield.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileShield.m; sourceTree = "<group>"; };
+		9C260D64B0BC7D807FFFA5DD /* AttestationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttestationTests.swift; sourceTree = "<group>"; };
+		A1B044FD55C108B662E4FED7 /* ConfigFloorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigFloorTests.swift; sourceTree = "<group>"; };
+		AD1530CD0E0A3A2B1DA6F123 /* ScreenCaptureObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCaptureObserver.swift; sourceTree = "<group>"; };
 		B07EA23955FCFFE51F84FB10 /* MobileShield.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileShield.h; sourceTree = "<group>"; };
-		C6498045F4D766B2306483BD /* Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internal.swift; sourceTree = "<group>"; };
+		BA71AB98204ACD27DE9812F5 /* PolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyTests.swift; sourceTree = "<group>"; };
+		BB06A12638AED44009B5573C /* SecurityConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityConfig.swift; sourceTree = "<group>"; };
+		BB4AC84579E9169A18703CE5 /* JSONValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
+		BBD6576ADA850CC14FE6204F /* ConfigVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigVerifier.swift; sourceTree = "<group>"; };
+		C4F1F4F4B2EB000D04585D82 /* DetectorSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectorSmokeTests.swift; sourceTree = "<group>"; };
+		C9013419BA3AF426FE1E5103 /* DetectorRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectorRegistry.swift; sourceTree = "<group>"; };
+		CACFF42612D1FDF0BCB07890 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
+		D2B4196F7A15E184C77D41E0 /* EnvironmentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentInfo.swift; sourceTree = "<group>"; };
+		D9927C61288481A15FB6853D /* Policy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Policy.swift; sourceTree = "<group>"; };
+		DC92D4BB39CAAEA7F043E329 /* Watchdog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchdog.swift; sourceTree = "<group>"; };
+		DFE8E727923A0CAF72256FF0 /* MSInternal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSInternal.swift; sourceTree = "<group>"; };
+		E272226CF025D374BD6DCC9A /* JailbreakDetectors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JailbreakDetectors.swift; sourceTree = "<group>"; };
 		E45B5F28569825CB8A7B6E92 /* MobileShieldCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileShieldCoreTests.swift; sourceTree = "<group>"; };
+		EC664C3C719F4D59C28ED66B /* CodeSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSignature.swift; sourceTree = "<group>"; };
+		F7331D473A762B26E45B39D0 /* DebuggerDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerDetector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +154,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19792255EE86FA64E0E8AB48 /* Policy */ = {
+			isa = PBXGroup;
+			children = (
+				D9927C61288481A15FB6853D /* Policy.swift */,
+				DC92D4BB39CAAEA7F043E329 /* Watchdog.swift */,
+			);
+			path = Policy;
+			sourceTree = "<group>";
+		};
+		34FFC8651E6B119098848FEB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7F49EF8BAAB3998884E8339D /* EventBus.swift */,
+				CACFF42612D1FDF0BCB07890 /* Monitor.swift */,
+				DFE8E727923A0CAF72256FF0 /* MSInternal.swift */,
+				13811FE1A8EB024BB62F01A4 /* ShieldEngine.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5478433D2831333949920F44 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				7728C765FA3E79270CC76F31 /* Bootstrap.swift */,
+				5A78D62C1F1210CCEF0112D6 /* CanonicalJSON.swift */,
+				451D1D0D2AB6844F855C4FE7 /* ConfigEngine.swift */,
+				82A506137C8E1AE28052B4DD /* ConfigStore.swift */,
+				BBD6576ADA850CC14FE6204F /* ConfigVerifier.swift */,
+				112A050780FFD30CA4108533 /* Defaults.swift */,
+				BB4AC84579E9169A18703CE5 /* JSONValue.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		654D3CAF42994BBA4E47DE65 /* Public */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,11 +201,34 @@
 		8A4D6F9EF47B6420E24E2F13 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C6498045F4D766B2306483BD /* Internal.swift */,
 				923A8FFE13338D65CB64DF9D /* MobileShield.m */,
 				38DD1A2C58EC1B28A03A453C /* PrivacyInfo.xcprivacy */,
+				C506607B93BF22312F9B1B1E /* Attest */,
+				5478433D2831333949920F44 /* Config */,
+				34FFC8651E6B119098848FEB /* Core */,
+				9F93BE653C3216CEB4C7E447 /* Detectors */,
+				E68BA6F4DF7E8644B99702D1 /* Model */,
+				19792255EE86FA64E0E8AB48 /* Policy */,
+				F1123456D6F1200C23A0EC15 /* Support */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		9F93BE653C3216CEB4C7E447 /* Detectors */ = {
+			isa = PBXGroup;
+			children = (
+				F7331D473A762B26E45B39D0 /* DebuggerDetector.swift */,
+				4E8771A99428B3DAF6E6289D /* Detector.swift */,
+				C9013419BA3AF426FE1E5103 /* DetectorRegistry.swift */,
+				9019EF6E9B2571C9D8802894 /* DeviceLockDetector.swift */,
+				184CAA0B81B5FE89EB7B0B9F /* HookingDetectors.swift */,
+				3A36714AAC9E54CDD5C2C33F /* IntegrityDetectors.swift */,
+				E272226CF025D374BD6DCC9A /* JailbreakDetectors.swift */,
+				1F359A7E04765F913964D621 /* NetworkDetector.swift */,
+				AD1530CD0E0A3A2B1DA6F123 /* ScreenCaptureObserver.swift */,
+				1CE4555E442F2DFC675C0B6D /* SimulatorDetector.swift */,
+			);
+			path = Detectors;
 			sourceTree = "<group>";
 		};
 		B1F8DEA4EF14DBCE31266DB5 /* Products */ = {
@@ -91,6 +238,39 @@
 				179FC0AD516F1F763C66291D /* MobileShieldCoreTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C506607B93BF22312F9B1B1E /* Attest */ = {
+			isa = PBXGroup;
+			children = (
+				19D50ED03B9DCF76996AA6D9 /* AttestationProvider.h */,
+			);
+			path = Attest;
+			sourceTree = "<group>";
+		};
+		E68BA6F4DF7E8644B99702D1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6041E2AD1125B372BE1849A9 /* Action.swift */,
+				D2B4196F7A15E184C77D41E0 /* EnvironmentInfo.swift */,
+				BB06A12638AED44009B5573C /* SecurityConfig.swift */,
+				06B2E7F729C5963165C2F0C7 /* Severity.swift */,
+				067D89739A8237064F78D220 /* ShieldError.swift */,
+				687692D315247F7E1E2ADFA1 /* ThreatCategory.swift */,
+				4D281F12ADE5B75016535ED3 /* ThreatEvent.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F1123456D6F1200C23A0EC15 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				EC664C3C719F4D59C28ED66B /* CodeSignature.swift */,
+				403EB40DCB815C8DFC482DC7 /* KeychainTeam.swift */,
+				112E77C1579A33EF70BDB270 /* Platform.swift */,
+				618805BAE856521D7504FE67 /* ProvisioningProfile.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		F486605114728C934F389BA6 = {
@@ -106,7 +286,18 @@
 		F88008413595B452E2B73402 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				9C260D64B0BC7D807FFFA5DD /* AttestationTests.swift */,
+				A1B044FD55C108B662E4FED7 /* ConfigFloorTests.swift */,
+				6D9066713E0BCC19A531456D /* ConfigMergeTests.swift */,
+				5D45DE15CF9BAB51BABF1027 /* ConfigSignatureTests.swift */,
+				04002DB39CF1BF5ED791F7AB /* ConfigVectorsTests.swift */,
+				C4F1F4F4B2EB000D04585D82 /* DetectorSmokeTests.swift */,
+				79BC202A01AA156F0A320D6B /* EngineTests.swift */,
 				E45B5F28569825CB8A7B6E92 /* MobileShieldCoreTests.swift */,
+				305C6BA435A959762BC03E62 /* MonitorTests.swift */,
+				BA71AB98204ACD27DE9812F5 /* PolicyTests.swift */,
+				43F6EB0566C145BC6540005B /* TestSupport.swift */,
+				5F5643F1C5D1070C1656AB19 /* WatchdogTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -118,6 +309,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47412A9F62D0B31A9CDCBC66 /* AttestationProvider.h in Headers */,
 				E60707AA941CF546D2ECE1F3 /* MobileShield.h in Headers */,
 				24FB8BC99B4EE6CA69F2E48B /* MobileShieldCore.h in Headers */,
 			);
@@ -212,8 +404,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EDD7994C681C0ECA973D1E6 /* Internal.swift in Sources */,
+				25D494BE32A8A0BEB2D42179 /* Action.swift in Sources */,
+				485918A7E14E53EC77A1D8AC /* Bootstrap.swift in Sources */,
+				DB10571679761B336AD1519B /* CanonicalJSON.swift in Sources */,
+				62BE1A3FB7424C5EC5EDE5DF /* CodeSignature.swift in Sources */,
+				E16F5F1518B977142B7503C7 /* ConfigEngine.swift in Sources */,
+				8431A127C388876C1E964C5F /* ConfigStore.swift in Sources */,
+				FA0B334FA55036E480750281 /* ConfigVerifier.swift in Sources */,
+				B900A6C107D475D944C9977A /* DebuggerDetector.swift in Sources */,
+				5BEEE8090604FDF72F7863F4 /* Defaults.swift in Sources */,
+				33B3DA8DDFBFB9BFF16946A7 /* Detector.swift in Sources */,
+				9895D13DA55E93F25B89D71B /* DetectorRegistry.swift in Sources */,
+				D52BFD2A066B9E6110AB528D /* DeviceLockDetector.swift in Sources */,
+				D4AD678A2044CFFEF5DB0584 /* EnvironmentInfo.swift in Sources */,
+				F1A2B1833917B0C2E10E8D54 /* EventBus.swift in Sources */,
+				CA4FBB579F88A8668B0F3735 /* HookingDetectors.swift in Sources */,
+				24655B58557014E6475D7370 /* IntegrityDetectors.swift in Sources */,
+				1F04F99E47201D5901540656 /* JSONValue.swift in Sources */,
+				E643DB0E2296D0D60D5A5CF9 /* JailbreakDetectors.swift in Sources */,
+				5A7960C89FC2EAD3ED7DBCA0 /* KeychainTeam.swift in Sources */,
+				BB97C3BF2A6DBCD235A53405 /* MSInternal.swift in Sources */,
 				A8DAE7E53EE706615E0A4B3D /* MobileShield.m in Sources */,
+				5448EAAFADE6858CE8397891 /* Monitor.swift in Sources */,
+				75AC62C1B19023991E0B69DE /* NetworkDetector.swift in Sources */,
+				7DB9BEBA4A162A1A7FB65603 /* Platform.swift in Sources */,
+				DD21DC9F2FBA6D9743E97481 /* Policy.swift in Sources */,
+				9699313343300446BA34D286 /* ProvisioningProfile.swift in Sources */,
+				4926297C00B2F1353C5BD49B /* ScreenCaptureObserver.swift in Sources */,
+				2ADF8C62119E40B2D98332B2 /* SecurityConfig.swift in Sources */,
+				5C764AFF1B66E9B8D6F51E74 /* Severity.swift in Sources */,
+				9BDA3BB84A52C169F492A3B4 /* ShieldEngine.swift in Sources */,
+				5B0150CB1A2D98855E4886D4 /* ShieldError.swift in Sources */,
+				1F1C9483B2B1164F80D7F213 /* SimulatorDetector.swift in Sources */,
+				48E014E45BA986B113FFD5E3 /* ThreatCategory.swift in Sources */,
+				FBAD606A4DB848E82E5CBA3C /* ThreatEvent.swift in Sources */,
+				D57C973FFC192EE99463C252 /* Watchdog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +446,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4EEC7B2C3722D26B9850715 /* AttestationTests.swift in Sources */,
+				A6E1775891C90CAEBF20DF30 /* ConfigFloorTests.swift in Sources */,
+				63587DC8CC52D2186C22AD44 /* ConfigMergeTests.swift in Sources */,
+				BB2B476CA54A32F62CE2DD78 /* ConfigSignatureTests.swift in Sources */,
+				7D2B21F87607AFD6D06B1158 /* ConfigVectorsTests.swift in Sources */,
+				055ECCEAD448563D2581FBAA /* DetectorSmokeTests.swift in Sources */,
+				7FE14293EC5114ACACC04BD3 /* EngineTests.swift in Sources */,
 				4C3845794D24E25309B2391C /* MobileShieldCoreTests.swift in Sources */,
+				EEEC0CEF7E39735C46044FF0 /* MonitorTests.swift in Sources */,
+				3908AF1ED8C99797406773B5 /* PolicyTests.swift in Sources */,
+				58ECDC830761CF40DD3A5094 /* TestSupport.swift in Sources */,
+				CA90E3488EE68A3AD2089B66 /* WatchdogTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +595,7 @@
 		A49F7D1D8C10E55BF7952110 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
@@ -368,6 +604,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) MS_VERSION=\\\"$(MS_VERSION_STRING)\\\"";
 				GENERATE_INFOPLIST_FILE = YES;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
