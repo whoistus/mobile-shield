@@ -31,6 +31,14 @@ android {
         }
     }
 
+    buildTypes {
+        debug {
+            externalNativeBuild {
+                cmake { arguments "-DMSHIELD_DEBUG=ON" }
+            }
+        }
+    }
+
     buildFeatures {
         buildConfig true
     }
@@ -43,8 +51,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     publishing {
@@ -55,7 +63,14 @@ android {
 }
 
 dependencies {
+    implementation 'com.scottyab:rootbeer-lib:0.1.1'
+    // Ed25519 verification for signed runtime config (no GMS dependency).
+    implementation('com.google.crypto.tink:tink-android:1.15.0') {
+        exclude group: 'androidx.annotation', module: 'annotation-jvm'
+    }
     testImplementation 'junit:junit:4.13.2'
+    // Real org.json on the JVM (android.jar only has stubs).
+    testImplementation 'org.json:json:20240303'
     androidTestImplementation 'androidx.test:runner:1.6.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
 }

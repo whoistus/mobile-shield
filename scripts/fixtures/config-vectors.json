@@ -1,0 +1,2139 @@
+{
+  "schemaVersion": 1,
+  "appId": "io.mobileshield.example",
+  "testPublicKeyEd25519": "ezF/w+U77MUcQJwHZY8EE+4iUL2CLRl8N6+TljeeRJk=",
+  "rules": {
+    "blockThresholdDefault": 0.7,
+    "belowThreshold": "BLOCK or KILL with confidence < blockThreshold is applied as WARN",
+    "experimentalTier": "experimental ids are always REPORT",
+    "unknownDetectorIds": "treated as prod tier (host-defined ids)",
+    "clamped": "config is applied with floor values; updateConfig reports ConfigRejected(floor)",
+    "rejected": "config is not applied; last-known-good stays active"
+  },
+  "experimental": {
+    "android": [
+      "root.buildTags",
+      "hooking.fridaThreads",
+      "hooking.fridaFd",
+      "hooking.fridaMaps",
+      "hooking.dbusProbe",
+      "hooking.prologue",
+      "hooking.libIntegrity",
+      "tampering.memDump"
+    ],
+    "ios": [
+      "jailbreak.dyldImages",
+      "jailbreak.dyldEnv",
+      "hooking.fridaImages",
+      "hooking.fridaPort",
+      "hooking.prologue",
+      "tampering.provisioning"
+    ]
+  },
+  "floor": {
+    "android": [
+      "tampering.signature",
+      "tampering.nativeVsJava"
+    ],
+    "ios": [
+      "tampering.bundleId",
+      "tampering.teamId"
+    ],
+    "minTampering": "WARN"
+  },
+  "vectors": [
+    {
+      "name": "defaults-dev",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "REPORT",
+          "EMULATOR": "REPORT",
+          "DEBUGGER": "REPORT",
+          "HOOKING": "REPORT",
+          "TAMPERING": "REPORT",
+          "INSTALLER": "REPORT",
+          "SCREEN_CAPTURE": "REPORT",
+          "DEV_OPTIONS_ADB": "REPORT",
+          "NO_DEVICE_LOCK": "REPORT",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "defaults-test",
+      "platform": "any",
+      "channel": "test",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "WARN",
+          "EMULATOR": "REPORT",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "WARN",
+          "INSTALLER": "REPORT",
+          "SCREEN_CAPTURE": "REPORT",
+          "DEV_OPTIONS_ADB": "REPORT",
+          "NO_DEVICE_LOCK": "REPORT",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "defaults-prod",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "missing-channel-is-prod",
+      "platform": "any",
+      "channel": null,
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "host-override-merges",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {
+          "VPN_PROXY": "WARN",
+          "DEBUGGER": "BLOCK"
+        },
+        "detectors": {}
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "BLOCK",
+          "HOOKING": "WARN",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "WARN"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "detector-disabled",
+      "platform": "android",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {
+          "network.vpn": false
+        }
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "REPORT",
+          "EMULATOR": "REPORT",
+          "DEBUGGER": "REPORT",
+          "HOOKING": "REPORT",
+          "TAMPERING": "REPORT",
+          "INSTALLER": "REPORT",
+          "SCREEN_CAPTURE": "REPORT",
+          "DEV_OPTIONS_ADB": "REPORT",
+          "NO_DEVICE_LOCK": "REPORT",
+          "VPN_PROXY": "REPORT"
+        },
+        "disabled": [
+          "network.vpn"
+        ],
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "unknown-category-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {
+          "NOPE": "BLOCK"
+        },
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "unknown-action-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {
+          "ROOT": "EXPLODE"
+        },
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "wrong-version-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 2,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "appid-mismatch-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "com.other.app",
+        "seq": 1,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "interval-below-min-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "monitoringIntervalMs": 500
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "floor-android-signature-cannot-disable",
+      "platform": "android",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {
+          "tampering.signature": false
+        }
+      },
+      "expect": {
+        "result": "clamped",
+        "reason": "floor",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "disabled": [],
+        "events": [
+          {
+            "category": "TAMPERING",
+            "detectorId": "policy.floor",
+            "confidence": 0.5,
+            "action": "WARN"
+          }
+        ]
+      },
+      "decisions": []
+    },
+    {
+      "name": "floor-ios-bundleid-cannot-disable",
+      "platform": "ios",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {
+          "tampering.bundleId": false
+        }
+      },
+      "expect": {
+        "result": "clamped",
+        "reason": "floor",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "disabled": [],
+        "events": [
+          {
+            "category": "TAMPERING",
+            "detectorId": "policy.floor",
+            "confidence": 0.5,
+            "action": "WARN"
+          }
+        ]
+      },
+      "decisions": []
+    },
+    {
+      "name": "floor-tampering-min-warn",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {
+          "TAMPERING": "REPORT"
+        },
+        "detectors": {}
+      },
+      "expect": {
+        "result": "clamped",
+        "reason": "floor",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "WARN",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": [
+          {
+            "category": "TAMPERING",
+            "detectorId": "policy.floor",
+            "confidence": 0.5,
+            "action": "WARN"
+          }
+        ]
+      },
+      "decisions": []
+    },
+    {
+      "name": "no-floor-outside-prod",
+      "platform": "android",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {
+          "TAMPERING": "REPORT"
+        },
+        "detectors": {
+          "tampering.signature": false
+        }
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "REPORT",
+          "EMULATOR": "REPORT",
+          "DEBUGGER": "REPORT",
+          "HOOKING": "REPORT",
+          "TAMPERING": "REPORT",
+          "INSTALLER": "REPORT",
+          "SCREEN_CAPTURE": "REPORT",
+          "DEV_OPTIONS_ADB": "REPORT",
+          "NO_DEVICE_LOCK": "REPORT",
+          "VPN_PROXY": "REPORT"
+        },
+        "disabled": [
+          "tampering.signature"
+        ],
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "stale-seq-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": 5,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 4,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "expired",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "equal-seq-accepted",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": 5,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 5,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "REPORT",
+          "EMULATOR": "REPORT",
+          "DEBUGGER": "REPORT",
+          "HOOKING": "REPORT",
+          "TAMPERING": "REPORT",
+          "INSTALLER": "REPORT",
+          "SCREEN_CAPTURE": "REPORT",
+          "DEV_OPTIONS_ADB": "REPORT",
+          "NO_DEVICE_LOCK": "REPORT",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "expired-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "expiresAt": 1799999999999
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "expired",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "not-yet-expired-accepted",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "expiresAt": 1800000060000
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "REPORT",
+          "EMULATOR": "REPORT",
+          "DEBUGGER": "REPORT",
+          "HOOKING": "REPORT",
+          "TAMPERING": "REPORT",
+          "INSTALLER": "REPORT",
+          "SCREEN_CAPTURE": "REPORT",
+          "DEV_OPTIONS_ADB": "REPORT",
+          "NO_DEVICE_LOCK": "REPORT",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "signature-valid",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": true
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 7,
+        "policies": {
+          "VPN_PROXY": "WARN"
+        },
+        "detectors": {},
+        "signature": "VDbss9oo7o8/KKMMD74QFaBPph3kUhBLuGZp/lbDFki15cWboFTmfqd/DvkM+ZTStWY3MXam0haM+bTs10CsCw=="
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "WARN"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "signature-tampered-body",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": true
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 7,
+        "policies": {
+          "VPN_PROXY": "BLOCK"
+        },
+        "detectors": {},
+        "signature": "VDbss9oo7o8/KKMMD74QFaBPph3kUhBLuGZp/lbDFki15cWboFTmfqd/DvkM+ZTStWY3MXam0haM+bTs10CsCw=="
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "signature",
+        "events": [
+          {
+            "category": "TAMPERING",
+            "detectorId": "policy.badSignature",
+            "confidence": 0.5,
+            "action": "WARN"
+          }
+        ]
+      },
+      "decisions": []
+    },
+    {
+      "name": "signature-missing",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": true
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 7,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "signature",
+        "events": [
+          {
+            "category": "TAMPERING",
+            "detectorId": "policy.badSignature",
+            "confidence": 0.5,
+            "action": "WARN"
+          }
+        ]
+      },
+      "decisions": []
+    },
+    {
+      "name": "threshold-zero-accepted",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "blockThreshold": 0
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "REPORT",
+          "EMULATOR": "REPORT",
+          "DEBUGGER": "REPORT",
+          "HOOKING": "REPORT",
+          "TAMPERING": "REPORT",
+          "INSTALLER": "REPORT",
+          "SCREEN_CAPTURE": "REPORT",
+          "DEV_OPTIONS_ADB": "REPORT",
+          "NO_DEVICE_LOCK": "REPORT",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "threshold-one-accepted",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "blockThreshold": 1
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "REPORT",
+          "EMULATOR": "REPORT",
+          "DEBUGGER": "REPORT",
+          "HOOKING": "REPORT",
+          "TAMPERING": "REPORT",
+          "INSTALLER": "REPORT",
+          "SCREEN_CAPTURE": "REPORT",
+          "DEV_OPTIONS_ADB": "REPORT",
+          "NO_DEVICE_LOCK": "REPORT",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "threshold-above-one-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "blockThreshold": 1.5
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "threshold-negative-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "blockThreshold": -0.1
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "kill-range-valid-accepted",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "killDelayMsRange": [
+          100,
+          200
+        ]
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "REPORT",
+          "EMULATOR": "REPORT",
+          "DEBUGGER": "REPORT",
+          "HOOKING": "REPORT",
+          "TAMPERING": "REPORT",
+          "INSTALLER": "REPORT",
+          "SCREEN_CAPTURE": "REPORT",
+          "DEV_OPTIONS_ADB": "REPORT",
+          "NO_DEVICE_LOCK": "REPORT",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "kill-range-inverted-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "killDelayMsRange": [
+          5,
+          1
+        ]
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "kill-range-wrong-length-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "killDelayMsRange": [
+          5
+        ]
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "installer-allowlist-custom-accepted",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "installerAllowlist": [
+          "com.corp.mdm"
+        ]
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "REPORT",
+          "EMULATOR": "REPORT",
+          "DEBUGGER": "REPORT",
+          "HOOKING": "REPORT",
+          "TAMPERING": "REPORT",
+          "INSTALLER": "REPORT",
+          "SCREEN_CAPTURE": "REPORT",
+          "DEV_OPTIONS_ADB": "REPORT",
+          "NO_DEVICE_LOCK": "REPORT",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "installer-allowlist-empty-entry-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "installerAllowlist": [
+          ""
+        ]
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "detector-flag-not-boolean-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {
+          "network.vpn": "no"
+        }
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "seq-missing-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "expires-not-a-number-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "expiresAt": "soon"
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "policies-array-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": [],
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "policies-null-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": null,
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "policy-value-not-string-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {
+          "ROOT": 2
+        },
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "detectors-array-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": []
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "seq-fraction-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1.5,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "seq-string-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": "1",
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "seq-bool-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": true,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "version-string-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": "1",
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "interval-fraction-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "monitoringIntervalMs": 5000.5
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "interval-integral-float-accepted",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "monitoringIntervalMs": 5000.0
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "REPORT",
+          "EMULATOR": "REPORT",
+          "DEBUGGER": "REPORT",
+          "HOOKING": "REPORT",
+          "TAMPERING": "REPORT",
+          "INSTALLER": "REPORT",
+          "SCREEN_CAPTURE": "REPORT",
+          "DEV_OPTIONS_ADB": "REPORT",
+          "NO_DEVICE_LOCK": "REPORT",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "threshold-string-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "blockThreshold": "0.5"
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "threshold-bool-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "blockThreshold": true
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "kill-range-not-array-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "killDelayMsRange": {
+          "min": 1,
+          "max": 2
+        }
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "kill-range-fraction-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "killDelayMsRange": [
+          1.5,
+          3
+        ]
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "kill-range-string-element-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "killDelayMsRange": [
+          "1",
+          3
+        ]
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "installer-allowlist-not-array-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "installerAllowlist": "com.corp.mdm"
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "installer-allowlist-non-string-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "installerAllowlist": [
+          "com.corp.mdm",
+          5
+        ]
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "expires-fraction-rejected",
+      "platform": "any",
+      "channel": "dev",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "expiresAt": 1800000000000.5
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "kill-policy-accepted-when-asked",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {
+          "HOOKING": "KILL"
+        },
+        "detectors": {}
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "KILL",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "floor-tighten-tampering-accepted",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {
+          "TAMPERING": "KILL"
+        },
+        "detectors": {}
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "KILL",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "floor-several-violations-one-event",
+      "platform": "android",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {
+          "TAMPERING": "REPORT"
+        },
+        "detectors": {
+          "tampering.signature": false,
+          "tampering.nativeVsJava": false
+        }
+      },
+      "expect": {
+        "result": "clamped",
+        "reason": "floor",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "WARN",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "disabled": [],
+        "events": [
+          {
+            "category": "TAMPERING",
+            "detectorId": "policy.floor",
+            "confidence": 0.5,
+            "action": "WARN"
+          }
+        ]
+      },
+      "decisions": []
+    },
+    {
+      "name": "floor-experimental-ids-may-be-disabled",
+      "platform": "android",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {
+          "hooking.prologue": false,
+          "root.buildTags": false
+        }
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "disabled": [
+          "hooking.prologue",
+          "root.buildTags"
+        ],
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "floor-missing-channel-is-prod",
+      "platform": "any",
+      "channel": null,
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {
+          "TAMPERING": "REPORT"
+        },
+        "detectors": {}
+      },
+      "expect": {
+        "result": "clamped",
+        "reason": "floor",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "WARN",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": [
+          {
+            "category": "TAMPERING",
+            "detectorId": "policy.floor",
+            "confidence": 0.5,
+            "action": "WARN"
+          }
+        ]
+      },
+      "decisions": []
+    },
+    {
+      "name": "signature-valid-canonical-types",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": true
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 9,
+        "policies": {
+          "ROOT": "WARN",
+          "VPN_PROXY": "WARN"
+        },
+        "detectors": {
+          "network.vpn": false
+        },
+        "blockThreshold": 0.8,
+        "killDelayMsRange": [
+          500,
+          3000
+        ],
+        "installerAllowlist": [
+          "com.example.caf\u00e9",
+          "com.corp.mdm"
+        ],
+        "signature": "Wmg03eELn+TNg0J0t+lXoyEbXVzz+H9SRytTuGhYPWBkRlWB5NyKikr/vgpaq+0Fv69TcXXeb9SxUhJQPwiBDQ=="
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "WARN",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "WARN"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "signature-valid-but-stale-seq-rejected",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": true
+      },
+      "lastKnownGoodSeq": 5,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 3,
+        "policies": {},
+        "detectors": {},
+        "signature": "TxHS0ypzWcw5B/zYus+CSyYbn7oQMiN3bbziKr2Ndm/FUTJg2J2Hgoj1XLCqALmMZrawEGpNqzCc8eQS5ZJNCQ=="
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "expired",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "signature-valid-but-wrong-appid-rejected",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": true
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "com.other.app",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "signature": "jrRAkQfKXJg3B6TWMB35fTJA9LFfiwX+yYicYQqdcgt2Lf/LK7UA4WjTL8g2s8xgGC88WPHPw4n6jkN297S9Dw=="
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "schema",
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "signature-empty-rejected",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": true
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 7,
+        "policies": {},
+        "detectors": {},
+        "signature": ""
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "signature",
+        "events": [
+          {
+            "category": "TAMPERING",
+            "detectorId": "policy.badSignature",
+            "confidence": 0.5,
+            "action": "WARN"
+          }
+        ]
+      },
+      "decisions": []
+    },
+    {
+      "name": "signature-not-base64-rejected",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": true
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 7,
+        "policies": {},
+        "detectors": {},
+        "signature": "%%%not-base64%%%"
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "signature",
+        "events": [
+          {
+            "category": "TAMPERING",
+            "detectorId": "policy.badSignature",
+            "confidence": 0.5,
+            "action": "WARN"
+          }
+        ]
+      },
+      "decisions": []
+    },
+    {
+      "name": "signature-checked-before-schema",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": true
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 2,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "rejected",
+        "reason": "signature",
+        "events": [
+          {
+            "category": "TAMPERING",
+            "detectorId": "policy.badSignature",
+            "confidence": 0.5,
+            "action": "WARN"
+          }
+        ]
+      },
+      "decisions": []
+    },
+    {
+      "name": "signature-not-required-without-bootstrap-key",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 7,
+        "policies": {},
+        "detectors": {}
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": []
+    },
+    {
+      "name": "decisions-prod",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {},
+        "detectors": {},
+        "blockThreshold": 0.7
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "WARN",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": [
+        {
+          "category": "ROOT",
+          "detectorId": "root.suPaths",
+          "confidence": 0.9,
+          "action": "BLOCK",
+          "platform": "android"
+        },
+        {
+          "category": "ROOT",
+          "detectorId": "root.suPaths",
+          "confidence": 0.5,
+          "action": "WARN",
+          "platform": "android"
+        },
+        {
+          "category": "ROOT",
+          "detectorId": "root.buildTags",
+          "confidence": 1.0,
+          "action": "REPORT",
+          "platform": "android"
+        },
+        {
+          "category": "ROOT",
+          "detectorId": "jailbreak.paths",
+          "confidence": 0.9,
+          "action": "BLOCK",
+          "platform": "ios"
+        },
+        {
+          "category": "ROOT",
+          "detectorId": "jailbreak.dyldImages",
+          "confidence": 1.0,
+          "action": "REPORT",
+          "platform": "ios"
+        },
+        {
+          "category": "VPN_PROXY",
+          "detectorId": "network.vpn",
+          "confidence": 1.0,
+          "action": "REPORT",
+          "platform": "android"
+        },
+        {
+          "category": "TAMPERING",
+          "detectorId": "policy.floor",
+          "confidence": 0.5,
+          "action": "WARN",
+          "platform": "any"
+        }
+      ]
+    },
+    {
+      "name": "decisions-kill-opt-in",
+      "platform": "any",
+      "channel": "prod",
+      "bootstrap": {
+        "pubkey": false
+      },
+      "lastKnownGoodSeq": null,
+      "now": 1800000000000,
+      "config": {
+        "version": 1,
+        "appId": "io.mobileshield.example",
+        "seq": 1,
+        "policies": {
+          "HOOKING": "KILL"
+        },
+        "detectors": {}
+      },
+      "expect": {
+        "result": "applied",
+        "policies": {
+          "ROOT": "BLOCK",
+          "EMULATOR": "BLOCK",
+          "DEBUGGER": "WARN",
+          "HOOKING": "KILL",
+          "TAMPERING": "BLOCK",
+          "INSTALLER": "WARN",
+          "SCREEN_CAPTURE": "WARN",
+          "DEV_OPTIONS_ADB": "WARN",
+          "NO_DEVICE_LOCK": "WARN",
+          "VPN_PROXY": "REPORT"
+        },
+        "events": []
+      },
+      "decisions": [
+        {
+          "category": "HOOKING",
+          "detectorId": "hooking.fridaThreads",
+          "confidence": 1.0,
+          "action": "REPORT",
+          "platform": "android"
+        },
+        {
+          "category": "HOOKING",
+          "detectorId": "hooking.fridaImages",
+          "confidence": 1.0,
+          "action": "REPORT",
+          "platform": "ios"
+        },
+        {
+          "category": "HOOKING",
+          "detectorId": "hooking.custom",
+          "confidence": 0.8,
+          "action": "KILL",
+          "platform": "any"
+        },
+        {
+          "category": "HOOKING",
+          "detectorId": "hooking.custom",
+          "confidence": 0.6,
+          "action": "WARN",
+          "platform": "any"
+        }
+      ]
+    }
+  ]
+}
