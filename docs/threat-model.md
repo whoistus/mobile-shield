@@ -1,62 +1,95 @@
 # Threat model
 
-Status: draft for review at the start of phases 2 and 3. Design source: plan design.md (contracts, registry).
+Status: final for 1.0 scope, reviewed against the code in phases 2-5. Device calibration (see [test-matrix.md](test-matrix.md)) is still pending; tiers below are the launch tiers.
 
 ## Goal
 
-Raise the cost of running a protected app on a compromised or instrumented device, and tell the host app so it can decide. The SDK reports and applies a configured action. It does not prove a device is clean.
+Raise the cost of running a protected app on a compromised or instrumented device, and tell the host so it can decide. The SDK reports, applies a configured action and keeps a native flag. It does not prove a device is clean, and it does not enforce anything outside the host's own gating.
 
-## Categories
+## Categories and actions
 
-`ROOT`, `EMULATOR`, `DEBUGGER`, `HOOKING`, `TAMPERING`, `INSTALLER`, `SCREEN_CAPTURE`, `DEV_OPTIONS_ADB`, `NO_DEVICE_LOCK`, `VPN_PROXY`.
+Categories: `ROOT`, `EMULATOR`, `DEBUGGER`, `HOOKING`, `TAMPERING`, `INSTALLER`, `SCREEN_CAPTURE`, `DEV_OPTIONS_ADB`, `NO_DEVICE_LOCK`, `VPN_PROXY`.
 
-Actions: `REPORT` (event only), `WARN` (event, host shows UI), `BLOCK` (sets `isBlocked()`), `KILL` (opt-in delayed termination). Severity: `LOW` to `CRITICAL`. Every event carries a confidence in 0..1.
+Actions: `REPORT` (event only), `WARN` (event, host shows UI), `BLOCK` (event and sticky `isBlocked()`), `KILL` (opt-in delayed process termination). Severity `LOW`..`CRITICAL`. Every event has a confidence 0..1.
+
+Channel defaults (native, compiled in):
+
+| Category | dev | test | prod |
+|---|---|---|---|
+| ROOT | REPORT | WARN | BLOCK |
+| EMULATOR | REPORT | REPORT | BLOCK |
+| DEBUGGER | REPORT | WARN | WARN |
+| HOOKING | REPORT | WARN | WARN |
+| TAMPERING | REPORT | WARN | BLOCK |
+| INSTALLER, SCREEN_CAPTURE, DEV_OPTIONS_ADB, NO_DEVICE_LOCK | REPORT | REPORT | WARN |
+| VPN_PROXY | REPORT | REPORT | REPORT |
+
+KILL is never a default. BLOCK/KILL only fires when `confidence >= blockThreshold` (default 0.7); below that the applied action degrades to WARN. No single low-confidence signal reaches BLOCK or KILL.
 
 ## Detector tiers
 
+39 ids: Android 22, iOS 17. 25 prod tier, 14 experimental. Each id has a spec in `docs/detectors/<id>.md` (evidence, benign matches, confidence rule, limitations).
+
 | Tier | Meaning | Max action |
 |---|---|---|
-| prod | validated, low false-positive risk | any, per policy |
-| exp | no false-positive data yet | forced to REPORT until promoted in a release note |
+| prod | evidence is strong and false-positive risk is low | any, per policy |
+| exp | no false-positive data yet | forced to REPORT, whatever `policies` says |
 
-Launch totals: 39 detector ids (Android 22, iOS 17), 25 prod, 14 exp. Each id has a spec at `docs/detectors/<id>.md` (template: [detectors/_template.md](detectors/_template.md)).
+- Android exp: `root.buildTags`, `hooking.fridaThreads`, `hooking.fridaFd`, `hooking.fridaMaps`, `hooking.dbusProbe`, `hooking.prologue`, `hooking.libIntegrity`, `tampering.memDump`.
+- iOS exp: `jailbreak.dyldImages`, `jailbreak.dyldEnv`, `hooking.fridaImages`, `hooking.fridaPort`, `hooking.prologue`, `tampering.provisioning`.
+- Everything else is prod tier. The tier lists are compiled into the binary (`Defaults.EXPERIMENTAL_IDS` / `cpp/policy/Tiers.h` on Android, `Defaults.experimentalIds` on iOS) and are not configurable at runtime.
 
-BLOCK or KILL only fires when confidence >= `blockThreshold` (default 0.7). No single low-confidence signal reaches BLOCK or KILL. KILL is never a default.
+Promotion criteria (experimental to prod, per id, stated in the release notes of the release that changes the list):
+
+1. Spec file complete, positive and negative unit tests present.
+2. Device matrix run covering the relevant states (stock, rooted or jailbroken incl. rootless, non-GMS and OEM fleets, emulator or simulator) with no benign-device hit.
+3. Report-only observation on at least one real app (at least one week or 500 sessions) with a per-id false-positive review inside the budget.
+4. A prod id that shows benign hits is demoted the same way.
+
+Until the device matrix and observation have been run, every tier assignment is provisional.
 
 ## Enforcement contract (BLOCK is advisory)
 
-- The SDK decides. The host must call `isBlocked()` before every protected operation (root navigator, deep links, restored sessions; not only login).
-- `isBlocked()` turns true on the first BLOCK/KILL and stays true for the process lifetime. The host restarts to clear it.
+- The SDK decides; the host enforces. The host must call native `isBlocked()` before every protected operation: root navigator, deep links, push-opened routes, restored sessions, biometric quick login. Not only Login.
+- `isBlocked()` is true after the first BLOCK/KILL and stays true for the process lifetime. The host restarts to clear it. Events are not the source of truth; a hooked JS/Dart layer can drop them.
 - The SDK never intercepts application flows.
-- Enforcement is device-side only in this version. A fully compromised device can lie to the app; there is no backend leg yet.
+- Device-side only. A fully compromised device can lie to the app. There is no backend leg in this version: the server cannot tell a genuine SDK verdict from a forged one.
+- KILL (opt-in) schedules termination after a random delay in `killDelayMsRange` (default 500-3000 ms) on a separate native path; `stopMonitoring()` does not cancel it.
 
-## Native floor
+## Native floor (prod channel)
 
-Compiled into the binary on the prod channel. Runtime config may tighten but never loosen.
+Compiled in. A runtime config can raise protection, but anything below the floor is clamped.
 
 - Cannot be disabled: `tampering.signature`, `tampering.nativeVsJava` (Android); `tampering.bundleId`, `tampering.teamId` (iOS).
-- Minimum action: TAMPERING >= WARN.
-- A config below the floor is clamped; `updateConfig` returns `ConfigRejected(floor)` and emits a low-confidence event that can never block or kill.
+- TAMPERING action is at least WARN.
+- Clamped config is applied, `updateConfig`/`init` report `ConfigRejected(floor)` and a `policy.floor` event (TAMPERING, confidence 0.5) is emitted.
+- Floor ids only work if their pins exist: `tampering.signature` needs `io.mobileshield.SIGNING_SHA256`; `tampering.teamId` needs `MobileShieldTeamId`, a real device, and a readable keychain group or provisioning profile. A missing pin makes the detector unsupported (no event), so configure the pins. The floor does not protect a host that forgot them.
+- Other than the floor, the code does not stop a trusted (signed) config from loosening policies on prod. The trust boundary is the config signing key; see below.
 
 ## Bootstrap vs runtime config
 
 | | Bootstrap | Runtime |
 |---|---|---|
-| Source | host signed bundle (Android manifest meta-data, iOS Info.plist), read natively | host passes to `init` / `updateConfig` |
-| Contents | channel, config public key, identity pins | policies, detector switches, intervals, allowlist |
-| Mutability | immutable | can only tighten what bootstrap allows |
-| Reaches JS/Dart | never | yes |
+| Source | host's signed bundle (Android manifest meta-data, iOS Info.plist), read natively | host passes to `init` / `updateConfig` |
+| Contents | channel, config public key, identity pins (signing cert / team / bundle id) | policies, detector switches, intervals, installer allowlist |
+| Reaches JS/Dart | never | yes (host forwards it; the SDK does no networking) |
 
-Channel absent means `prod` (fail closed). Runtime config is Ed25519-signed when a public key is bootstrapped; an invalid signature keeps the last-known-good config and emits a low-confidence event. Config fetching is the host's job; the SDK does no networking.
+Channel absent means `prod` (fail closed). A bootstrapped Ed25519 key makes signed config mandatory; on prod, runtime config without a key is refused (`BootstrapMissing`). Signature failure keeps the last-known-good config and emits `policy.badSignature` (TAMPERING, 0.5). `policy.*` events never block or kill: both policy engines hard-cap them at WARN, whatever `blockThreshold` is.
+
+## Attestation (deferred)
+
+Not implemented. `attestEnrol` and `attestAssert` return `{status: "unsupported", kind}` for every kind on every layer, and `EnvironmentInfo.attestationKinds` is always empty. Reason: a device-produced attestation blob is useless without a backend verifier, and none exists. The extension point is kept (`AttestationProvider`, empty registry) and the intended design is in [attestation-protocol.md](attestation-protocol.md). Future work is a minor release; no API break.
 
 ## Not covered
 
-- Device attestation (Key Attestation, Play Integrity, App Attest) and its backend verifier. Deferred: see [attestation-protocol.md](attestation-protocol.md).
-- SSL pinning (stays app-side).
+- Device attestation (Key Attestation, Play Integrity, App Attest) and any backend verification of SDK verdicts.
+- SSL pinning (stays app-side), screen-shielding UI, biometrics, keychain/keystore.
 - Malware and overlay detection, UI-automation detection, device fingerprinting.
-- Backend enforcement: server-side decisions on top of SDK signals.
-- A determined attacker with full control of the device and time to reverse the SDK. Layered checks and cross-checks raise cost; they do not eliminate bypass.
+- Screen recording detection: `screen.captured` on Android is the API 34+ screenshot callback (needs the `DETECT_SCREEN_CAPTURE` permission and Activity registration), not a recording detector.
+- A determined attacker with full control of the device and time to reverse the SDK (patching the host's `isBlocked()` call sites, the wrapper, or the native library). Layered detectors and cross-checks raise cost; they do not remove bypass.
+- Unsupported detectors emit no event, so event absence is never proof of a clean device. iOS `getConfig().unsupportedDetectors` lists what the current build cannot run; Android has no equivalent list.
+- Huawei HMS integrity, Frida detection beyond the experimental heuristics, jailbreak tools that hide from every heuristic here.
 
 ## Non-GMS devices
 
-No dependency on Google or Huawei services. GMS/HMS presence is probed and reported only. Absence of GMS is never hostile. Emulator and installer checks are multi-signal and configurable so OEM, TV-box and white-label devices are not penalised by one weak signal.
+No dependency on Google or Huawei services. GMS/HMS presence is probed by package query and reflection and reported only. Absence is never a threat. See [non-gms-devices.md](non-gms-devices.md).

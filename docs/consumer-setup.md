@@ -1,23 +1,23 @@
 # Consumer setup
 
-The Android core (`io.mobileshield:core`) is on GitHub Packages Maven and the React Native wrapper on GitHub Packages npm. GitHub Packages requires a token even for reads. Replace `whoistus` with the real owner if it changes.
+The Android core (`io.mobileshield:core`) is on GitHub Packages Maven, the React Native wrapper on GitHub Packages npm, and the Flutter plugin is a git dependency on this private repository. GitHub Packages requires a token even for reads. The examples use the owner `whoistus`; replace it if the repository moves (npm scope and Maven URL both follow the owner).
 
-## Token
+## One read token
 
-Create a personal access token (classic) with scope `read:packages`, or use an org/CI token with the same scope. Store it outside the repo.
+Create a classic personal access token with scope `read:packages` (the documented path for GitHub Packages; check current GitHub docs before relying on a fine-grained token), owned by a user, or a bot account, who has read access to the `mobile-shield` repository. Packages inherit repository access, so the token owner must be able to see the repo. Store it outside the repo. For Flutter the git fetch needs `repo` read as well (or use SSH, below).
 
-Gradle: `~/.gradle/gradle.properties`
+| Where | How |
+|---|---|
+| Developer machine, Gradle | `~/.gradle/gradle.properties`: `gpr.user=<github-username>` and `gpr.token=<token>` |
+| Developer machine, npm | `~/.npmrc`: `//npm.pkg.github.com/:_authToken=<token>` |
+| Developer machine, git | normal GitHub credentials (credential manager or SSH key) |
+| CI | secret `MOBILE_SHIELD_READ_TOKEN` (name is up to you) in the consumer's repository or org; never commit it |
 
-```
-gpr.user=<github-username>
-gpr.token=<token>
-```
+Do not use the consumer repo's own `GITHUB_TOKEN` to read this package unless an admin has granted that repository access in the package settings; a dedicated read-only token avoids surprises.
 
-Or environment variables `GITHUB_ACTOR` and `GITHUB_TOKEN` (CI).
+## Android (settings.gradle or android/build.gradle)
 
-## Android (settings.gradle)
-
-Works with `FAIL_ON_PROJECT_REPOS` / centralized repositories.
+Centralized repositories (`FAIL_ON_PROJECT_REPOS`) in `settings.gradle`:
 
 ```groovy
 dependencyResolutionManagement {
@@ -31,21 +31,24 @@ dependencyResolutionManagement {
                 username = settings.providers.gradleProperty("gpr.user").orNull ?: System.getenv("GITHUB_ACTOR")
                 password = settings.providers.gradleProperty("gpr.token").orNull ?: System.getenv("GITHUB_TOKEN")
             }
+            content { includeGroup("io.mobileshield") }
         }
     }
 }
 ```
 
+RN and Flutter app templates declare repositories in `android/build.gradle` `allprojects { repositories { ... } }`; put the same `maven { ... }` block there with `findProperty("gpr.user")` (see [integration-rn.md](integration-rn.md)). Native add-to-app hosts: [integration-flutter.md](integration-flutter.md#6-add-to-app-flutter-module-in-a-native-host).
+
 ## React Native (.npmrc)
 
-Project or user `.npmrc`:
+Project `.npmrc` (committed, no secret) plus the token from the user `.npmrc` or CI environment:
 
 ```
 @whoistus:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=<token>
+//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
 ```
 
-Then `npm install @whoistus/react-native-mobile-shield` (or yarn equivalent). Pin the exact version.
+`npm install --save-exact @whoistus/react-native-mobile-shield@<version>`. Pre-releases live on the `next` dist-tag; always pin the exact version.
 
 ## Flutter (git dependency)
 
@@ -55,27 +58,43 @@ dependencies:
     git:
       url: https://github.com/whoistus/mobile-shield.git
       path: packages/flutter
-      ref: v0.1.0
+      ref: vX.Y.Z   # exact release tag; no tag is published yet
 ```
 
-Git access uses your normal GitHub credentials. The plugin's Android side still resolves `io.mobileshield:core` from GitHub Packages, so the `settings.gradle` snippet above is also required in the host app.
+The plugin's Android side still resolves `io.mobileshield:core` from GitHub Packages, so the Gradle block above is also required in the app.
+
+## CI
+
+GitHub Actions example (Android, RN and Flutter consumers):
+
+```yaml
+env:
+  READ_TOKEN: ${{ secrets.MOBILE_SHIELD_READ_TOKEN }}
+  NPM_TOKEN: ${{ secrets.MOBILE_SHIELD_READ_TOKEN }}
+steps:
+  - name: Registry and git credentials
+    run: |
+      mkdir -p ~/.gradle
+      printf 'gpr.user=%s\ngpr.token=%s\n' "ci-bot" "$READ_TOKEN" >> ~/.gradle/gradle.properties
+      git config --global url."https://x-access-token:${READ_TOKEN}@github.com/".insteadOf "https://github.com/"
+```
+
+Other CI systems: expose the token as a masked variable and write the same Gradle properties, `.npmrc` entry and git rewrite. Alternatively give the runner an SSH deploy key and use `git@github.com:whoistus/mobile-shield.git` as the Flutter URL. Never print the token; use masked variables and avoid `--info` Gradle logs that echo credentials.
 
 ## Symptom: 401 Unauthorized
 
-Gradle fails with `Could not GET 'https://maven.pkg.github.com/...'. Received status code 401 from server: Unauthorized` (npm: `E401`). Meaning: no token, wrong token, expired token, or missing `read:packages` scope. It is not a missing artifact. Check the properties/env names above and that the token owner can see the repository.
+Gradle: `Could not GET 'https://maven.pkg.github.com/...'. Received status code 401 from server: Unauthorized` (npm: `E401`). It means no token, a wrong or expired token, or a token without `read:packages`. A `403`/`404` on a version you know exists means the token owner cannot see the repository.
 
-## Local development
+## Local development without a token
 
-Publish the core to the local Maven cache and add `mavenLocal()` to the repositories block (first entry):
+`./scripts/build-aar.sh` publishes the core to Maven Local. Add `mavenLocal()` as the first repository in the consumer build (the example hosts do) and no token is needed. Remove it before release builds so you test the real registry path.
 
-```bash
-./scripts/build-aar.sh
-```
+## Clean-install verification (release gate)
 
-then in `settings.gradle`:
+On a machine or CI job with only the read token configured and no `mavenLocal()`:
 
-```groovy
-repositories { mavenLocal(); google(); mavenCentral() }
-```
+1. RN 0.72 and RN 0.86: new app, `npm install --save-exact` the wrapper, add the repository block, build Android and iOS, print `getSdkVersion()`.
+2. Flutter 3.27: `flutter pub add mobile_shield --git-url https://github.com/whoistus/mobile-shield.git --git-ref <tag> --git-path packages/flutter`, build CocoaPods and SwiftPM iOS and Android.
+3. Native Android host with centralized repositories (add-to-app).
 
-`mavenLocal()` needs no token. Remove it before release builds so you test the real registry path.
+Record the result for each published version. Not run yet: no version is published ([implementation-status.md](implementation-status.md)).
