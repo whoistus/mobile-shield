@@ -20,6 +20,7 @@ Phases 2-5 are implemented in code and compile-verified. Nothing is released, no
 - iOS: Info.plist bootstrap, same config pipeline with CryptoKit, last-known-good persistence, policy, watchdog, foreground monitoring, 17 registry ids (11 prod, 6 experimental) including `tampering.teamId` (keychain access group, else provisioning profile; unsupported on the simulator or without `MobileShieldTeamId`).
 - React Native: typed JS API, Android and iOS bridges, `ShieldGate` example. Flutter: Dart API with typed exceptions, Android and iOS plugins (CocoaPods and SwiftPM), example app, add-to-app module and host.
 - Attestation: `unsupported` everywhere by design.
+- Local development guide: [local-development.md](local-development.md) (build cores, Maven Local, RN `file:`/`npm pack`, Flutter `path:`, rebuild matrix). Only `npm pack --dry-run` was run while writing it (44 files incl. the vendored xcframework); the iOS/Gradle steps restate the existing scripts and were not re-run on Linux.
 
 ## Compile verification (commands)
 

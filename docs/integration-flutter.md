@@ -16,7 +16,7 @@ dependencies:
       ref: vX.Y.Z   # exact release tag; no tag is published yet
 ```
 
-For local work in a checkout: `mobile_shield: {path: ../mobile-shield/packages/flutter}`. The package is `publish_to: none`.
+For local work in a checkout: `mobile_shield: {path: ../mobile-shield/packages/flutter}`. The package is `publish_to: none`. The Android side then needs the core in Maven Local; see [local-development.md](local-development.md).
 
 Android also needs the private Maven repository for `io.mobileshield:core` (the plugin pins the exact version). Flutter app (`android/build.gradle`):
 

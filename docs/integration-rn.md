@@ -4,7 +4,7 @@ Package `@whoistus/react-native-mobile-shield` (replace the scope with the real 
 
 ## 1. Install
 
-Read-token setup (npm, Gradle) is in [consumer-setup.md](consumer-setup.md). In short:
+Read-token setup (npm, Gradle) is in [consumer-setup.md](consumer-setup.md). To use an unpublished build from a checkout (`file:` link or `npm pack` tarball, core from Maven Local), see [local-development.md](local-development.md). In short, for the registry:
 
 ```
 # .npmrc

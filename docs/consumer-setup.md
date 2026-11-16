@@ -87,7 +87,7 @@ Gradle: `Could not GET 'https://maven.pkg.github.com/...'. Received status code 
 
 ## Local development without a token
 
-`./scripts/build-aar.sh` publishes the core to Maven Local. Add `mavenLocal()` as the first repository in the consumer build (the example hosts do) and no token is needed. Remove it before release builds so you test the real registry path.
+`./scripts/build-aar.sh` publishes the core to Maven Local. Add `mavenLocal()` as the first repository in the consumer build (the example hosts do) and no token is needed. Remove it before release builds so you test the real registry path. Full build-and-link workflow for all platforms (iOS xcframework, RN `file:`/`npm pack`, Flutter `path:`): [local-development.md](local-development.md).
 
 ## Clean-install verification (release gate)
 
